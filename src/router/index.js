@@ -1,10 +1,11 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHashHistory } from "vue-router"
 
 import HomePage from "../components/home_page.vue"
 
 const routes = [
     {
         path: '/home',
+        name: 'home',
         component: HomePage,
         // children: [
         //     {
@@ -21,7 +22,7 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(import.meta.env.BASE_URL),
     routes
 })
 
