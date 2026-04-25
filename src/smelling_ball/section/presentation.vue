@@ -1,23 +1,28 @@
 <template>
   <v-container fluid class=" pa-0 ma-0">
     
-    <v-row class="background ma-0 align-center justify-center" style="min-height: 100vh;">
+    <v-row class="background ma-0 align-center justify-center" style="min-height: 80vh;">
       
       <v-col 
         cols="12" 
         md="6" 
         class="d-flex flex-column align-center justify-center pa-10"
+        style="height: 80vh;"
       >
         <div
-          class="font-weight-black text-primary text-center font "
+          class="font-weight-black text-center blur-container font"
           :class="mobile ? 'text-h4' : 'text-h2'" 
           style="max-width: 800px;"
         >
-          A tecnologia natural que elimina 100% dos odores da areia.
+          <div 
+            class="pa-6 rounded-xl mb-n16 position-absolute w-100 h-100 highlight-bg" 
+            style="z-index: -1; filter: blur(10px);"
+          ></div>
+          <div>A tecnologia <span class="text-primary">natural</span> que elimina <span class="text-primary">100% dos odores</span> da areia.</div>
         </div>
         
         <div
-          class="mt-7 text-center"
+          class="mt-12 text-center font-weight-medium"
           :class="mobile ? 'text-h6' : 'text-h5'" 
           style="max-width: 600px;"
         >
@@ -28,8 +33,8 @@
           text="Conheça a Linha"
           class="text-body-1 bg-secondary font-weight-black mt-8"
           rounded="lg"
-          size="large"
-          variant="tonal"
+          size="x-large"
+          elevation="4"
           @click="redirect"
         ></v-btn>
       </v-col>
@@ -43,15 +48,59 @@
       </v-col>
     </v-row>
 
-    <v-row class="ma-0">
+    <v-row justify="space-evenly" class="my-10 px-4">
+      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+          <v-icon icon="mdi-leaf" size="32"></v-icon>
+        </v-avatar>
+        <div class="text-subtitle-1 font-weight-bold">100% Natural</div>
+        <div class="text-caption">Seguro para seu pet e para o planeta</div>
+      </v-col>
+
+      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+          <v-icon icon="mdi-clock-fast" size="32"></v-icon>
+        </v-avatar>
+        <div class="text-subtitle-1 font-weight-bold">Ação Instantânea</div>
+        <div class="text-caption">Elimina odores no momento do contato</div>
+      </v-col>
+
+      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+          <v-icon icon="mdi-cat" size="32"></v-icon>
+        </v-avatar>
+        <div class="text-subtitle-1 font-weight-bold">Amigo dos Gatos</div>
+        <div class="text-caption">Sem fragrâncias irritantes ou químicas</div>
+      </v-col>
+
+      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+          <v-icon icon="mdi-trending-up" size="32"></v-icon>
+        </v-avatar>
+        <div class="text-subtitle-1 font-weight-bold">Alto Rendimento</div>
+        <div class="text-caption">Prolonga em até 3x a vida útil da areia</div>
+      </v-col>
+    </v-row>
+
+    <v-row class="ma-0 mt-10">
       <v-col cols="12" class="d-flex align-center justify-center position-relative pa-0">
-        <v-img :src="catImage" class="cover w-100" max-width="500">
-          <div class="text-overlay">
+        <v-img 
+          :src="catImage" 
+          class="rounded-xl" 
+          max-width="500"
+        >
+          <div class="fill-height d-flex align-end justify-center pb-6">
             <div
-              class="text-center px-5 rounded-lg border-lg pa-3 border-secondary mx-4"
-              :class="mobile ? 'text-body-1' : 'text-h5'" 
+              class="text-center px-4 py-3 rounded-xl mx-4 blur-card"
+              :class="mobile ? 'text-caption' : 'text-body-2'" 
+              style="max-width: 80%; border: 1px solid rgba(255,255,255,0.2);"
             >
-              Elimina o cheiro de urina e fezes instantaneamente, prolongando a vida útil da areia.
+              <div 
+                class="font-weight-black" 
+                :class="mobile ? 'text-body-1' : 'text-h6'"
+              >
+                Elimina o cheiro de urina e fezes <span class="text-secondary">instantaneamente</span>, prolongando a vida útil da areia.
+              </div>
             </div>
           </div>
         </v-img>
@@ -69,7 +118,7 @@ import products from "../../assets/todas.png"
 const { mobile } = useDisplay();
 
 const redirect = () => {
-  window.location.replace("https://shopee.com.br/search?keyword=desodorizador%20de%20areia")
+  window.open("https://shopee.com.br/product/219423316/58256794939?d_id=08cb3&uls_trackid=55g9tvvg00f2&utm_content=3V5Px4oyY62T8fz9ZFrmodRQPwRR")
 }
 </script>
 
@@ -88,15 +137,15 @@ const redirect = () => {
 }
 
 .font {
-  font-family: 'Playfair+Display';
+  font-family: 'Playfair+Display' !important;
 }
 
 .background {
   background-image: url("../../assets/background2.png");
   width: 100%;
-  min-height: 70vh; 
+  min-height: 60vh; 
   background-size: 120%; 
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
 
   mask-image: linear-gradient(
