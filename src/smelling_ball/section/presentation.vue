@@ -82,18 +82,21 @@
       </v-col>
     </v-row>
 
-    <v-row class="ma-0 mt-10">
+    <v-row class="ma-0 mt-16">
       <v-col cols="12" class="d-flex align-center justify-center position-relative pa-0">
         <v-img 
           :src="catImage" 
-          class="rounded-xl" 
+          class="rounded-xl overflow-visible" 
           max-width="500"
         >
-          <div class="fill-height d-flex align-end justify-center pb-6">
+          <div class="fill-height d-flex align-start justify-center">
             <div
-              class="text-center px-4 py-3 rounded-xl mx-4 blur-card"
+              class="text-center px-6 py-4 rounded-xl mx-4 blur-card"
               :class="mobile ? 'text-caption' : 'text-body-2'" 
-              style="max-width: 80%; border: 1px solid rgba(255,255,255,0.2);"
+              style="max-width: 90%; border: 1px solid                 
+                rgba(255,255,255,0.3); background: rgba(255, 255, 255, 0.1);         
+               backdrop-filter: blur(12px); box-shadow: 0 8px 32px 0 rgba(0, 0, 0,  
+                0.1);"     
             >
               <div 
                 class="font-weight-black" 
