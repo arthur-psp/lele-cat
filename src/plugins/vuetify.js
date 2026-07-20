@@ -29,6 +29,7 @@ const dark = {
     info: '#faa043',
     success: '#30c86f',
     warning: '#e55455',
+    logoColor: "#f8bc68",
   },
   variables: {
     'high-emphasis-opacity': 0.87,
@@ -66,6 +67,7 @@ const light = {
     info: '#FAA043',
     field: '#E8EBF5',
     caption: '#6B6F85',
+    logoColor: "#f8bc68",
   },
   variables: {
     'overlay-multiplier': 0.6,
@@ -86,7 +88,7 @@ export const vuetify = createVuetify({
     messages: { pt },
   },
   theme: {
-    defaultTheme: 'system',
+    defaultTheme: 'dark',
     themes: {
       dark,
       light,

@@ -15,16 +15,17 @@
           style="max-width: 800px;"
         >
           <div 
-            class="pa-6 rounded-xl mb-n16 position-absolute w-100 h-100 highlight-bg" 
+            class="pa-6 rounded-xl mb-16 position-absolute w-100 h-100 highlight-bg" 
             style="z-index: -1; filter: blur(10px);"
           ></div>
-          <div>A tecnologia <span class="text-primary">natural</span> que elimina <span class="text-primary">100% dos odores</span> da areia.</div>
+          <div id="title">A tecnologia <span class="text-logoColor">natural</span> que elimina <span class="text-logoColor">100% dos odores</span> da areia.</div>
         </div>
         
         <div
           class="mt-12 text-center font-weight-medium"
           :class="mobile ? 'text-h6' : 'text-h5'" 
           style="max-width: 600px;"
+          id="subtitle"
         >
           O Lelê Cat elimina odores indesejados de forma instantânea e natural. O cuidado que sua casa precisa e o carinho que seu gato merece.
         </div>
@@ -40,6 +41,8 @@
       </v-col>
 
       <v-col 
+        id="products"
+        data-lag="0.2"
         cols="12" 
         md="6" 
         class="d-flex align-center justify-center pa-5"
@@ -49,33 +52,33 @@
     </v-row>
 
     <v-row justify="space-evenly" class="my-10 px-4">
-      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+      <v-col data-speed="1.5" cols="6" md="2" class="d-flex flex-column align-center text-center">
         <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-leaf" size="32"></v-icon>
+          <v-icon icon="mdi-leaf" size="32" id="box1"></v-icon>
         </v-avatar>
         <div class="text-subtitle-1 font-weight-bold">100% Natural</div>
         <div class="text-caption">Seguro para seu pet e para o planeta</div>
       </v-col>
 
-      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+      <v-col data-speed="1.2" cols="6" md="2" class="d-flex flex-column align-center text-center">
         <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-clock-fast" size="32"></v-icon>
+          <v-icon icon="mdi-clock-fast" size="32" id="box2"></v-icon>
         </v-avatar>
         <div class="text-subtitle-1 font-weight-bold">Ação Instantânea</div>
         <div class="text-caption">Elimina odores no momento do contato</div>
       </v-col>
 
-      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+      <v-col data-speed="1.5" cols="6" md="2" class="d-flex flex-column align-center text-center">
         <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-cat" size="32"></v-icon>
+          <v-icon icon="mdi-cat" size="32" id="box3"></v-icon>
         </v-avatar>
         <div class="text-subtitle-1 font-weight-bold">Amigo dos Gatos</div>
         <div class="text-caption">Sem fragrâncias irritantes ou químicas</div>
       </v-col>
 
-      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+      <v-col data-speed="1.2" cols="6" md="2" class="d-flex flex-column align-center text-center">
         <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-trending-up" size="32"></v-icon>
+          <v-icon icon="mdi-trending-up" size="32" id="box4"></v-icon>
         </v-avatar>
         <div class="text-subtitle-1 font-weight-bold">Alto Rendimento</div>
         <div class="text-caption">Prolonga em até 3x a vida útil da areia</div>
@@ -91,6 +94,7 @@
         >
           <div class="fill-height d-flex align-start justify-center">
             <div
+              id="finality"
               class="text-center px-6 py-4 rounded-xl mx-4 blur-card"
               :class="mobile ? 'text-caption' : 'text-body-2'" 
               style="max-width: 90%; border: 1px solid                 
@@ -99,6 +103,7 @@
                 0.1);"     
             >
               <div 
+                id="legend"
                 class="font-weight-black" 
                 :class="mobile ? 'text-body-1' : 'text-h6'"
               >
@@ -117,8 +122,15 @@
 import { useDisplay } from "vuetify";
 import catImage from "../../assets/cat_image.png"
 import products from "../../assets/todas.png"
+import { smellingBallController } from "../controller/smelling_ball_controller";
+import { onMounted } from "vue";
 
 const { mobile } = useDisplay();
+const { controller } = smellingBallController()
+
+onMounted(() => {
+  controller.initSmellingBallScroll()
+})
 
 const redirect = () => {
   window.open("https://shopee.com.br/product/219423316/58256794939?d_id=08cb3&uls_trackid=55g9tvvg00f2&utm_content=3V5Px4oyY62T8fz9ZFrmodRQPwRR")

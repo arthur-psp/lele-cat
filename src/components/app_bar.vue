@@ -3,10 +3,14 @@
     elevation="0" 
     :density="mobile ? 'compact' : 'default'"
     class="px-md-10"
-    style="background-color: rgba(var(--v-theme-surface), 0.8) !important; backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05);"
+    style="background-color: rgba(var(--v-theme-surface)) !important; border-bottom: 1px solid rgba(0,0,0,0.05);"
   >
+
+   <template v-slot:prepend>
+    <v-img :src="theme.current.value.dark ? fiveicon : logoLight" width="80" class="cursor-pointer"></v-img>
+   </template>
     <template v-slot:title>
-      <v-img :src="theme.current.value.dark ? logoDark : logoLight" width="160" class="cursor-pointer"></v-img>
+      <div class="d-flex justify-start align-center dancing-script">Lele cat</div>
     </template>
 
     <template v-slot:append>
@@ -53,11 +57,14 @@
 <script setup>
 import logoLight from "../assets/logo/logo_light-removebg-preview.png"
 import logoDark from "../assets/logo/logo_dark-removebg-preview.png"
+import fiveicon from "../assets/logo/fiveicon.png"
+
 import { useTheme } from "vuetify";
 import { onMounted, ref } from "vue";
 import { useDisplay } from "vuetify";
 
 const theme = useTheme()
+const currentTheme = ref("system");
 const isLightTheme = ref(false)
 const { mobile } = useDisplay()
 
@@ -65,11 +72,53 @@ const changeTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
 }
 
-onMounted(() => {
-  if (theme.current.value.dark) {
-    return isLightTheme.value = true
+const getSystemTheme = () => {
+  const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return isDarkMode ? "dark" : "light";
+};
+
+const applyTheme = (mode) => {
+  if (mode === 'system') {
+    theme.global.name.value = getSystemTheme();
   } else {
-    return isLightTheme.value = false
+    theme.global.name.value = mode;
   }
+}
+
+const handleChangeThemeMode = async (mode) => {
+  currentTheme.value = mode;
+  applyTheme(mode);
+};
+
+onMounted(() => {
+  applyTheme(currentTheme.value)
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (currentTheme.value === 'system') {
+      applyTheme('system');
+    }
+  });
 })
 </script>
+
+<style>
+.dancing-script {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-size: 40px;
+  font-weight: 700;
+  font-style: normal;
+  color: #f8bc68;
+}
+
+.v-toolbar-title {
+  margin-inline-start: 5px !important;
+  height: 100%;
+}
+
+.v-toolbar-title__placeholder {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding-inline: 5px;
+}
+</style>
