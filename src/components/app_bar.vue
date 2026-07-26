@@ -3,11 +3,11 @@
     elevation="0" 
     :density="mobile ? 'compact' : 'default'"
     class="px-md-10"
-    style="background-color: rgba(var(--v-theme-surface)) !important; border-bottom: 1px solid rgba(0,0,0,0.05);"
+    style="background-color: rgba(var(--v-theme-surface)) !important;"
   >
 
    <template v-slot:prepend>
-    <v-img :src="theme.current.value.dark ? fiveicon : logoLight" width="80" class="cursor-pointer"></v-img>
+    <v-img :src="fiveicon" width="80" class="cursor-pointer"></v-img>
    </template>
     <template v-slot:title>
       <div class="d-flex justify-start align-center dancing-script">Lele cat</div>

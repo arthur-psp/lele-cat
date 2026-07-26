@@ -59,8 +59,6 @@ function smellingBallController() {
             scrollTrigger: {
                 trigger: box1,
                 start: "clamp(center, center)",
-                markers: true,
-                scrub: true,
             }
         })
 
@@ -73,9 +71,7 @@ function smellingBallController() {
             
             scrollTrigger: {
                 trigger: fin,
-                start: "clamp(center, center)",
-                markers: true,
-                scrub: true,
+                start: "clamp(center, center)",        
                 pin: fin,
                 pinSpacing: false,
                 

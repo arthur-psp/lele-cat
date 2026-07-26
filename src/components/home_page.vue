@@ -1,17 +1,9 @@
 <template>
-  <v-layout>
-    <AppBar />
-
-    <v-main>
-      <Presentation />
-      <Products />
-      <AboutUs />
-      <Feedbacks />
-      <FooterSection />
-    </v-main>
-  </v-layout>
-
-  
+  <Presentation />
+  <Products />
+  <AboutUs />
+  <Feedbacks />
+  <FooterSection />
 </template>
 
 <script setup>
