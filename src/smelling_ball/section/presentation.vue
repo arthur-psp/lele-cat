@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class=" pa-0 ma-0">
+  <v-container fluid class=" pa-0 ma-0 bg-bgsec">
     <div
       ref="heroSection"
       class="hero-wrapper position-relative overflow-hidden"
@@ -35,11 +35,11 @@
               class="pa-6 rounded-xl mb-16 position-absolute w-100 h-100 highlight-bg"
               style="z-index: -1; filter: blur(10px);"
             ></div>
-            <div id="title">A tecnologia <span class="text-logoColor">natural</span> que elimina <span class="text-logoColor">100% dos odores</span> da areia.</div>
+            <div class="text-bgsec" id="title">A tecnologia <span class="text-logoColor">natural</span> que elimina <span class="text-logoColor">100% dos odores</span> da areia.</div>
           </div>
 
           <div
-            class="mt-12 text-center font-weight-medium"
+            class="mt-12 text-center font-weight-medium text-bgsec"
             :class="mobile ? 'text-h6' : 'text-h5'"
             style="max-width: 600px;"
             id="subtitle"
@@ -49,7 +49,7 @@
 
           <v-btn
             text="Conheça a Linha"
-            class="text-body-1 bg-secondary font-weight-black mt-8"
+            class="text-body-1 bg-secondary font-weight-black mt-8 text-bgsec"
             rounded="lg"
             size="x-large"
             elevation="4"
@@ -64,6 +64,17 @@
         </v-col>
       </v-row>
     </div>
+
+    <v-row>
+      <v-col cols="12" style="min-height: 100vh;" class="d-flex align-center justify-center">
+        <v-img
+          id="all-product"
+          :src="products"
+          class=" overflow-visible"
+          max-width="1200"
+        ></v-img>
+      </v-col>
+    </v-row>
 
     <v-row justify="space-evenly" class="my-10 px-4">
       <v-col data-speed="1.5" cols="6" md="2" class="d-flex flex-column align-center text-center">
@@ -224,25 +235,22 @@ const redirect = () => {
   z-index: 0;
 }
 
+.hero-video-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(26, 26, 26, 1) 0%,
+    rgba(26, 26, 26, 0) 5%
+  );
+}
+
 .hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-@media (max-width: 960px) {
-  .hero-video-wrapper {
-    mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 50%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 50%,
-      rgba(0, 0, 0, 0) 100%
-    );
-  }
 }
 </style>

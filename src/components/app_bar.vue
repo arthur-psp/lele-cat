@@ -3,7 +3,7 @@
     elevation="0" 
     :density="mobile ? 'compact' : 'default'"
     class="px-md-10"
-    style="background-color: rgba(var(--v-theme-surface)) !important;"
+    style="background-color: rgba(var(--v-theme-bgsec)) !important;"
   >
 
    <template v-slot:prepend>
@@ -22,17 +22,17 @@
         :color="theme.current.value.dark ? 'primary' : 'warning'"
       ></v-btn>
       <div class="d-none d-md-flex">
-        <v-btn color="secondary" variant="flat" class="text-none font-weight-black ml-4 px-6" rounded="lg">
+        <v-btn color="secondary" variant="flat" class="text-none font-weight-black text-bgsec ml-4 px-6" rounded="lg">
           Onde Comprar
           <v-icon icon="mdi-chevron-down" end></v-icon>
           
           <v-menu activator="parent" transition="slide-y-transition">
             <v-list rounded="xl" class="mt-2 pa-5">
               <v-list-item 
-                prepend-icon="mdi-shopping" 
-                title="Comprar na Shopee" 
-                base-color="deep-orange"
-                href="https://shopee.com.br/product/219423316/58256794939"
+                prepend-icon="mdi-instagram" 
+                title="Ver Instragram" 
+                base-color="logoColor"
+                href="https://www.instagram.com/lelecat.desodorizante?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                 target="_blank"
                 rounded="lg"
               ></v-list-item>

@@ -9,6 +9,7 @@ const dark = {
   colors: {
     background: '#000000',
     bgsec: '#1a1a1aff',
+    surface: '#1a1a1aff',
     colorTable: '#212121',
     textTable: '#ffffff',
     activeItemNavDrawer: '#ffffff',
@@ -42,7 +43,7 @@ const light = {
   dark: false,
   colors: {
     background: '#F2F2F7',
-    bgsec: '#e9e9e9ff',
+    bgsec: '#1a1a1aff',
     colorTable: '#ffffff',
     textTable: '#000000',
     activeItemNavDrawer: '#000000',
