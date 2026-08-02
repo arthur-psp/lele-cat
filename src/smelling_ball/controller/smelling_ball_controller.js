@@ -78,6 +78,30 @@ function smellingBallController() {
             }
         })
 
+        const photoAllProduct = document.getElementById('all-product')
+        gsap.from(photoAllProduct, {
+            
+            opacity: 0,
+            duration: 1,
+            ease: "power3.in",
+            scrollTrigger: {
+                trigger: photoAllProduct,
+                start: "top 80%",
+            }
+        })
+
+        const offerCard = document.getElementById('offer-card')
+        gsap.from(offerCard, {
+            x: 100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.in",
+            scrollTrigger: {
+                trigger: offerCard,
+                start: "top 80%",
+            }
+        })
+
         return null
     }
 

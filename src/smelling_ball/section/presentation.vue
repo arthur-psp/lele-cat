@@ -35,7 +35,7 @@
               class="pa-6 rounded-xl mb-16 position-absolute w-100 h-100 highlight-bg"
               style="z-index: -1; filter: blur(10px);"
             ></div>
-            <div class="text-bgsec" id="title">A tecnologia <span class="text-logoColor">natural</span> que elimina <span class="text-logoColor">100% dos odores</span> da areia.</div>
+            <div class="" id="title">A tecnologia <span class="text-terciary">natural</span> que elimina <span class="text-terciary">100% dos odores</span> da areia.</div>
           </div>
 
           <div
@@ -49,8 +49,10 @@
 
           <v-btn
             text="Conheça a Linha"
-            class="text-body-1 bg-secondary font-weight-black mt-8 text-bgsec"
+            class="text-body-1 bg-bgsec font-weight-black mt-8"
             rounded="lg"
+            color="terciary"
+            variant="flat"
             size="x-large"
             elevation="4"
             @click="redirect"
@@ -65,14 +67,49 @@
       </v-row>
     </div>
 
-    <v-row>
-      <v-col cols="12" style="min-height: 100vh;" class="d-flex align-center justify-center">
-        <v-img
-          id="all-product"
-          :src="products"
-          class=" overflow-visible"
-          max-width="1200"
-        ></v-img>
+    <v-row class="ma-0 products-section">
+      <v-col cols="12" md="6" class="d-flex align-center justify-center pa-md-8">
+        <div class="product-image-wrap position-relative">
+          <div class="product-glow"></div>
+          <img
+            id="all-product"
+            :src="products"
+            alt="Linha completa de produtos Lelê Cat"
+            class="product-image"
+          />
+        </div>
+      </v-col>
+
+      <v-col id="offer-card" cols="12" md="6" class="d-flex align-center justify-center pa-md-8">
+        <div class="offer-card">
+          <div class="d-flex align-center mb-3">
+            <v-chip color="bgsec" variant="flat" class="font-weight-black text-logoColor mr-3">OFERTA</v-chip>
+            <span class="text-bgsec font-weight-black">-20% OFF comprando 4 un.</span>
+          </div>
+
+          <h3 class="offer-card__title text-bgsec font-weight-black mb-2">Lelê Cat Desodorizante</h3>
+          <p class="text-bgsec mb-6">
+            Elimina 100% dos odores da areia de forma instantânea e natural.
+          </p>
+
+          <div class="offer-card__price text-bgsec mb-6">
+            <div class="old-price">De R$ 200,00</div>
+            <div class="d-flex align-end">
+              <span class="current-price">R$ 159</span>
+              <span class="cents mb-1">,60</span>
+            </div>
+          </div>
+
+          <v-btn
+            text="Comprar Agora"
+            block
+            size="x-large"
+            rounded="xl"
+            class="text-body-1 bg-bgsec font-weight-black text-logoColor"
+            elevation="6"
+            @click="redirect"
+          ></v-btn>
+        </div>
       </v-col>
     </v-row>
 
@@ -205,27 +242,98 @@ const redirect = () => {
 </script>
 
 <style scoped>
-.text-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 50px;
-  z-index: 1;
-}
-
 .font {
   font-family: 'Playfair+Display' !important;
 }
 
+.products-section {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 24px 16px;
+}
+
+.product-image-wrap {
+  z-index: 2;
+  width: 100%;
+  max-width: 850px;
+}
+
+.product-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.product-glow {
+  position: absolute;
+  inset: 8%;
+  background: radial-gradient(circle, rgba(var(--v-theme-logoColor), 0.28) 0%, transparent 70%);
+  filter: blur(12px);
+  z-index: 0;
+}
+
+.offer-card {
+  background: rgb(var(--v-theme-logoColor));
+  border-radius: 32px;
+  padding: 40px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.offer-card__title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.2;
+}
+
+.old-price {
+  font-size: 20px;
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.current-price {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(52px, 6vw, 72px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.cents {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+@media (min-width: 960px) {
+  /* Imagem sobrepõe levemente o card de oferta */
+  .product-image-wrap {
+    margin-right: -70px;
+  }
+}
+
+@media (max-width: 959px) {
+  .products-section {
+    padding: 24px 8px;
+  }
+
+  .offer-card {
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+}
+
 .hero-wrapper {
   width: 100%;
-  min-height: calc(100vh - var(--appbar-height, 64px));
-  min-height: calc(100dvh - var(--appbar-height, 64px));
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .hero-video-wrapper {

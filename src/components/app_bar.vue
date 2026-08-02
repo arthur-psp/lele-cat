@@ -1,9 +1,10 @@
 <template>
   <v-app-bar 
     elevation="0" 
+    color="transparent"
     :density="mobile ? 'compact' : 'default'"
     class="px-md-10"
-    style="background-color: rgba(var(--v-theme-bgsec)) !important;"
+    style="backdrop-filter: blur(5px); background-color: rgba(255, 255, 255, 0.1) !important;"
   >
 
    <template v-slot:prepend>
@@ -22,7 +23,7 @@
         :color="theme.current.value.dark ? 'primary' : 'warning'"
       ></v-btn>
       <div class="d-none d-md-flex">
-        <v-btn color="secondary" variant="flat" class="text-none font-weight-black text-bgsec ml-4 px-6" rounded="lg">
+        <v-btn color="logoColor" variant="flat" class="text-none font-weight-black text-bgsec ml-4 px-6" rounded="lg">
           Onde Comprar
           <v-icon icon="mdi-chevron-down" end></v-icon>
           
