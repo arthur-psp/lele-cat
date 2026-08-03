@@ -67,49 +67,175 @@
       </v-row>
     </div>
 
-    <v-row class="ma-0 products-section">
-      <v-col cols="12" md="6" class="d-flex align-center justify-center pa-md-8">
-        <div class="product-image-wrap position-relative">
-          <div class="product-glow"></div>
-          <img
-            id="all-product"
-            :src="products"
-            alt="Linha completa de produtos Lelê Cat"
-            class="product-image"
-          />
-        </div>
+    <v-row class="mb-10">
+      <v-col cols="12" class="text-center">
+        <h2 class="text-h3 font-weight-black title-font mb-4">Conheça nossa linha</h2>
+        <p class="text-h6 text-grey-darken-1">Fragrâncias exclusivas, todas com o mesmo padrão de excelência</p>
       </v-col>
+    </v-row>
 
-      <v-col id="offer-card" cols="12" md="6" class="d-flex align-center justify-center pa-md-8">
-        <div class="offer-card">
-          <div class="d-flex align-center mb-3">
-            <v-chip color="bgsec" variant="flat" class="font-weight-black text-logoColor mr-3">OFERTA</v-chip>
-            <span class="text-bgsec font-weight-black">-20% OFF comprando 4 un.</span>
-          </div>
+    <!-- Cards de Benefícios Compartilhados (Legenda Separada) -->
+    <v-row class="mb-16 justify-center">
+      <v-col cols="12" md="10">
+        <v-card rounded="xl" class="pa-8 blur-card-products" elevation="0">
+          <v-row>
+            <v-col id="frag" cols="6" sm="3" class="text-center">
+              <v-icon icon="mdi-scent" color="primary" size="32" class="mb-2"></v-icon>
+              <div class="text-subtitle-2 font-weight-bold">Liberação de</div>
+              <div class="text-h6 font-weight-black text-primary">Fragrância</div>
+            </v-col>
+            <v-col id="dec" cols="6" sm="3" class="text-center">
+              <v-icon icon="mdi-molecule" color="primary" size="32" class="mb-2"></v-icon>
+              <div class="text-subtitle-2 font-weight-bold">Decompõe o</div>
+              <div class="text-h6 font-weight-black text-primary">mau Cheiro</div>
+            </v-col>
+            <v-col id="duration" cols="6" sm="3" class="text-center">
+              <v-icon icon="mdi-clock-outline" color="primary" size="32" class="mb-2"></v-icon>
+              <div class="text-subtitle-2 font-weight-bold">7 dias de</div>
+              <div class="text-h6 font-weight-black text-primary">Frescor</div>
+            </v-col>
+            <v-col id="natural" cols="6" sm="3" class="text-center">
+              <v-icon icon="mdi-leaf" color="primary" size="32" class="mb-2"></v-icon>
+              <div class="text-subtitle-2 font-weight-bold">100% Natural e</div>
+              <div class="text-h6 font-weight-black text-primary">Biodegradável</div>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
 
-          <h3 class="offer-card__title text-bgsec font-weight-black mb-2">Lelê Cat Desodorizante</h3>
-          <p class="text-bgsec mb-6">
-            Elimina 100% dos odores da areia de forma instantânea e natural.
-          </p>
-
-          <div class="offer-card__price text-bgsec mb-6">
-            <div class="old-price">De R$ 200,00</div>
-            <div class="d-flex align-end">
-              <span class="current-price">R$ 159</span>
-              <span class="cents mb-1">,60</span>
-            </div>
+    <!-- Grid de Produtos -->
+    <v-row>
+      <!-- Lavanda -->
+      <v-col id="lavanda" cols="12" md="6" class="d-flex align-center justify-center">
+        <v-card rounded="xl" flat width="100%" class=" pa-4 text-center d-flex flex-column align-center">
+          <v-chip 
+            id="lavanda-chip"
+            class="font-weight-black mb-6 px-6" 
+            color="#7b1c8a" 
+            variant="flat" 
+          >
+            Lavanda
+          </v-chip>
+                
+          <v-img :src="lavanda" width="55%" class="product-img"></v-img>
+        
+          <div class="d-flex align-baseline justify-center mb-4">
+            <span class="text-h5 font-weight-medium">R$ 55,00</span>
+            <span class="text-caption text-medium-emphasis ml-1">/ un</span>
           </div>
 
           <v-btn
-            text="Comprar Agora"
-            block
-            size="x-large"
-            rounded="xl"
-            class="text-body-1 bg-bgsec font-weight-black text-logoColor"
-            elevation="6"
-            @click="redirect"
-          ></v-btn>
-        </div>
+            color="logoColor"
+            width="250"
+            size="large"
+            rounded="lg"
+            prepend-icon="mdi-cart-outline"
+            class="font-weight-bold buy-animation"
+            elevation="0"
+          >
+            Comprar
+          </v-btn>
+        </v-card>
+      </v-col>
+
+      <!-- Hortelã -->
+      <v-col id="hortela" cols="12" md="6" class="d-flex align-center justify-center">
+        <v-card rounded="xl" flat width="100%" class="pa-6 text-center d-flex flex-column align-center">
+          
+          <v-chip id="hortela-chip" class="font-weight-black mb-4 px-6" color="hortela" variant="flat">
+            Hortelã
+          </v-chip>
+
+          <v-img :src="hortela" width="55%" class="product-img"></v-img>
+
+
+          <div class="d-flex align-baseline justify-center mb-4">
+            <span class="text-h5 font-weight-medium">R$ 55,00</span>
+            <span class="text-caption text-medium-emphasis ml-1">/ un</span>
+          </div>
+
+          <v-btn
+            color="logoColor"
+            width="250"
+            size="large"
+            rounded="lg"
+            prepend-icon="mdi-cart-outline"
+            class="font-weight-bold buy-animation"
+            elevation="0"
+          >
+            Comprar
+          </v-btn>
+
+        </v-card>
+      </v-col>
+
+      <v-divider v-if="!mobile" class="my-4"></v-divider>
+
+      <!-- Talco de Bebê -->
+      <v-col id="talco" cols="12" md="6" class="d-flex align-center justify-center">
+        <v-card rounded="xl" flat width="100%" class="pa-4 text-center d-flex flex-column align-center">
+          <v-chip 
+            id="talco-chip"
+            class="font-weight-black mb-6 px-6" 
+            color="#3970b3" 
+            variant="flat" 
+          >
+            Talco de Bebê
+          </v-chip>
+                  
+          <v-img :src="talcoDeBebe" width="55%" class="product-img"></v-img>
+
+          <div class="d-flex align-baseline justify-center mb-4">
+            <span class="text-h5 font-weight-medium">R$ 55,00</span>
+            <span class="text-caption text-medium-emphasis ml-1">/ un</span>
+          </div>
+
+          <v-btn
+            color="logoColor"
+            width="250"
+            size="large"
+            rounded="lg"
+            prepend-icon="mdi-cart-outline"
+            class="font-weight-bold buy-animation"
+            elevation="0"
+          >
+            Comprar
+          </v-btn>
+        </v-card>
+      </v-col>
+
+      <!-- Limão -->
+      <v-col id="limao" cols="12" md="6" class="d-flex align-center justify-center">
+        <v-card rounded="xl" flat width="100%" class="pa-4 text-center d-flex flex-column align-center">
+          <v-chip 
+            id="limao-chip"
+            class="font-weight-black mb-6 px-6" 
+            color="limao" 
+            variant="flat" 
+          >
+            Limão
+          </v-chip>
+             
+          <v-img :src="limao" width="55%" class="product-img"></v-img>
+
+          <div class="d-flex align-baseline justify-center mb-4">
+            <span class="text-h5 font-weight-medium">R$ 55,00</span>
+            <span class="text-caption text-medium-emphasis ml-1">/ un</span>
+          </div>
+          
+          <v-btn
+            color="logoColor"
+            width="250"
+            size="large"
+            rounded="lg"
+            prepend-icon="mdi-cart-outline"
+            class="font-weight-bold buy-animation"
+            elevation="0"
+          >
+            Comprar
+          </v-btn>
+        </v-card>
       </v-col>
     </v-row>
 
@@ -176,6 +302,52 @@
         </v-img>
       </v-col>
     </v-row>
+
+    <v-row class="ma-0 products-section">
+      <v-col cols="12" md="6" class="d-flex align-center justify-center pa-md-8">
+        <div class="product-image-wrap position-relative">
+          <div class="product-glow"></div>
+          <img
+            id="all-product"
+            :src="products"
+            alt="Linha completa de produtos Lelê Cat"
+            class="product-image"
+          />
+        </div>
+      </v-col>
+
+      <v-col id="offer-card" cols="12" md="6" class="d-flex align-center justify-center pa-md-8">
+        <div class="offer-card">
+          <div class="d-flex align-center mb-3">
+            <v-chip color="bgsec" variant="flat" class="font-weight-black text-logoColor mr-3">OFERTA</v-chip>
+            <span class="text-bgsec font-weight-black">-20% OFF comprando 4 un.</span>
+          </div>
+
+          <h3 class="offer-card__title text-bgsec font-weight-black mb-2">Lelê Cat Desodorizante</h3>
+          <p class="text-bgsec mb-6">
+            Elimina 100% dos odores da areia de forma instantânea e natural.
+          </p>
+
+          <div class="offer-card__price text-bgsec mb-6">
+            <div class="old-price">De R$ 200,00</div>
+            <div class="d-flex align-end">
+              <span class="current-price">R$ 159</span>
+              <span class="cents mb-1">,60</span>
+            </div>
+          </div>
+
+          <v-btn
+            text="Comprar Agora"
+            block
+            size="x-large"
+            rounded="xl"
+            class="text-body-1 bg-bgsec font-weight-black text-logoColor"
+            elevation="6"
+            @click="redirect"
+          ></v-btn>
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -188,6 +360,10 @@ import { smellingBallController } from "../controller/smelling_ball_controller";
 import { onMounted, onBeforeUnmount, ref, nextTick } from "vue";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import lavanda from "../../assets/lavanda.png"
+import hortela from "../../assets/hortela.png"
+import talcoDeBebe from "../../assets/talco_de_bebe.png"
+import limao from "../../assets/limao.png"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -360,5 +536,34 @@ const redirect = () => {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.title-font {
+  font-family: 'Playfair Display', serif !important;
+}
+
+.buy-animation {
+  transition: transform 0.3s ease;
+}
+
+.buy-animation:hover {
+  transform: translateY(-2px);
+}
+
+.blur-card-products {
+  background: rgba(var(--v-theme-surface), 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--v-theme-primary), 0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03) !important;
+}
+
+.v-theme--dark .blur-card-products {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.product-img {
+  max-width: 50% !important;
 }
 </style>

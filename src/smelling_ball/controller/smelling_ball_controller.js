@@ -102,6 +102,114 @@ function smellingBallController() {
             }
         })
 
+        const frag = document.getElementById('frag')
+        let fragST = SplitText.create(frag, { type: "words" });
+        const dec = document.getElementById('dec')
+        let decST = SplitText.create(dec, { type: "words" });
+        const duration = document.getElementById('duration')
+        let durationST = SplitText.create(duration, { type: "words" });
+        const natural = document.getElementById('natural')
+        let naturalST = SplitText.create(natural, { type: "words" });
+
+        gsap.from(fragST.words, {
+            duration: 1,
+            y: -100,
+            opacity: 0,
+            rotation: "random(-80, 80)",
+            ease: "back",
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: frag,
+                start: "top 80%"
+            }
+        });
+        gsap.from(decST.words, {
+            duration: 1,
+            y: -100,
+            opacity: 0,
+            rotation: "random(-80, 80)",
+            ease: "back",
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: frag,
+                start: "top 70%"
+            }
+        });
+        gsap.from(durationST.words, {
+            duration: 1,
+            y: -100,
+            opacity: 0,
+            rotation: "random(-80, 80)",
+            ease: "back",
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: frag,
+                start: "top 60%"
+            }
+        });
+        gsap.from(naturalST.words, {
+            duration: 1,
+            y: -100,
+            opacity: 0,
+            rotation: "random(-80, 80)",
+            ease: "back",
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: frag,
+                start: "top 50%"
+            }
+        });
+
+        const lavanda = document.getElementById('lavanda')
+        const lavandaChip = document.getElementById('lavanda-chip')
+        const hortela = document.getElementById('hortela')
+        const hortelaChip = document.getElementById('hortela-chip')
+        const talco = document.getElementById('talco')
+        const talcoChip = document.getElementById('talco-chip')
+        const limao = document.getElementById('limao')
+        const limaoChip = document.getElementById('limao-chip')
+        gsap.from(lavanda, {
+            x: -100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "elastic.out",
+            scrollTrigger: {
+                trigger: lavandaChip,
+                start: "top 80%",
+            }
+        })
+        gsap.from(hortela, {
+            x: 100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "elastic.out",
+            scrollTrigger: {
+                trigger: hortela,
+                start: "top 50%",
+            }
+        })
+        gsap.from(talco, {
+            x: -100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "elastic.out",
+            scrollTrigger: {
+                trigger: talcoChip,
+                start: "top 50%",
+            }
+        })
+        gsap.from(limao, {
+            x: 100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "elastic.out",
+            scrollTrigger: {
+                trigger: limaoChip,
+                start: "top 30%",
+                
+            }
+        })
+
         return null
     }
 
