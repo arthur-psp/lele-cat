@@ -240,65 +240,70 @@
     </v-row>
 
     <v-row justify="space-evenly" class="my-10 px-4">
-      <v-col data-speed="1.5" cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-leaf" size="32" id="box1"></v-icon>
-        </v-avatar>
-        <div class="text-subtitle-1 font-weight-bold">100% Natural</div>
-        <div class="text-caption">Seguro para seu pet e para o planeta</div>
+      <v-col id="box1" data-speed="1.2" cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <div >
+          <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+            <v-icon icon="mdi-leaf" size="32" ></v-icon>
+          </v-avatar>
+          <div class="text-subtitle-1 font-weight-bold">100% Natural</div>
+          <div class="text-caption">Seguro para seu pet e para o planeta</div>
+        </div>
       </v-col>
 
-      <v-col data-speed="1.2" cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-clock-fast" size="32" id="box2"></v-icon>
-        </v-avatar>
-        <div class="text-subtitle-1 font-weight-bold">Ação Instantânea</div>
-        <div class="text-caption">Elimina odores no momento do contato</div>
+      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <div id="box2" data-speed="1.2">
+          <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+            <v-icon icon="mdi-clock-fast" size="32"></v-icon>
+          </v-avatar>
+          <div class="text-subtitle-1 font-weight-bold">Ação Instantânea</div>
+          <div class="text-caption">Elimina odores no momento do contato</div>
+        </div>
       </v-col>
 
-      <v-col data-speed="1.5" cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-cat" size="32" id="box3"></v-icon>
-        </v-avatar>
-        <div class="text-subtitle-1 font-weight-bold">Amigo dos Gatos</div>
-        <div class="text-caption">Sem fragrâncias irritantes ou químicas</div>
+      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <div id="box3" data-speed="1.2">
+          <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+            <v-icon icon="mdi-cat" size="32"></v-icon>
+          </v-avatar>
+          <div class="text-subtitle-1 font-weight-bold">Amigo dos Gatos</div>
+          <div class="text-caption">Sem fragrâncias irritantes ou químicas</div>
+        </div>
       </v-col>
 
-      <v-col data-speed="1.2" cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-trending-up" size="32" id="box4"></v-icon>
-        </v-avatar>
-        <div class="text-subtitle-1 font-weight-bold">Alto Rendimento</div>
-        <div class="text-caption">Prolonga em até 3x a vida útil da areia</div>
+      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <div id="box4" data-speed="1.2">
+          <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+            <v-icon icon="mdi-trending-up" size="32"></v-icon>
+          </v-avatar>
+          <div class="text-subtitle-1 font-weight-bold">Alto Rendimento</div>
+          <div class="text-caption">Prolonga em até 3x a vida útil da areia</div>
+        </div>
       </v-col>
     </v-row>
 
-    <v-row class="ma-0 mt-16">
-      <v-col cols="12" class="d-flex align-center justify-center position-relative pa-0">
+    <v-row>
+      <v-col class="d-flex align-center justify-center" cols="12" md="6">
+        <div
+          class="text-center px-6 py-4 rounded-lg mx-4 blur-card"
+          style="max-width: 80%; border: 1px solid                 
+            rgba(255,255,255,0.1); background: rgba(255, 255, 255, 0.04);         
+           backdrop-filter: blur(10px);"     
+        >
+          <div
+            id="legend"
+            class="font-weight-black"
+            :class="mobile ? 'text-body-1' : 'text-h4'"
+          >
+            Elimina o cheiro de urina e fezes <span class="text-secondary">instantaneamente</span>, prolongando a vida útil da areia.
+          </div>
+        </div>
+      </v-col>
+      <v-col cols="6" class="d-flex align-center justify-center pa-0">
         <v-img
           :src="catImage"
           class="rounded-xl overflow-visible"
-          max-width="500"
+          max-width="700"
         >
-          <div class="fill-height d-flex align-start justify-center">
-            <div
-              id="finality"
-              class="text-center px-6 py-4 rounded-xl mx-4 blur-card"
-              :class="mobile ? 'text-caption' : 'text-body-2'"
-              style="max-width: 90%; border: 1px solid                 
-                rgba(255,255,255,0.3); background: rgba(255, 255, 255, 0.1);         
-               backdrop-filter: blur(12px); box-shadow: 0 8px 32px 0 rgba(0, 0, 0,  
-                0.1);"     
-            >
-              <div
-                id="legend"
-                class="font-weight-black"
-                :class="mobile ? 'text-body-1' : 'text-h6'"
-              >
-                Elimina o cheiro de urina e fezes <span class="text-secondary">instantaneamente</span>, prolongando a vida útil da areia.
-              </div>
-            </div>
-          </div>
         </v-img>
       </v-col>
     </v-row>

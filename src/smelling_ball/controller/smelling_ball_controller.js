@@ -51,30 +51,75 @@ function smellingBallController() {
         const box2 = document.getElementById('box2')
         const box3 = document.getElementById('box3')
         const box4 = document.getElementById('box4')
-        gsap.from([box1, box2, box3, box4], { 
-            duration: 2,
-            ease: "circ",
-            duration: 2,
-            rotate: "100",
+        gsap.from(box1, { 
+           y: -100,
+            opacity: 0,
+            duration: 3,
+            ease: "elastic.out",
             scrollTrigger: {
                 trigger: box1,
-                start: "clamp(center, center)",
+                start: "top top",
             }
         })
-
-        const fin = document.getElementById('finality')
-        const legend = document.getElementById('legend')
-        let legendST = SplitText.create(subtitle, { type: "words" });
-        gsap.from(fin, {
-            delay: 1,
-            duration: 1.9,
-            
+        gsap.from(box3, { 
+           y: -100,
+            opacity: 0,
+            duration: 3,
+            ease: "elastic.out",
             scrollTrigger: {
-                trigger: fin,
-                start: "clamp(center, center)",        
-                pin: fin,
-                pinSpacing: false,
-                
+                trigger: box3,
+                start: "top top",
+            }
+        })
+        gsap.from(box2, { 
+           y: -100,
+            opacity: 0,
+            duration: 2,
+            ease: "power1.inOut",
+            scrollTrigger: {
+                trigger: box2,
+                start: "top top",
+            }
+        })
+        gsap.from(box4, { 
+           y: -100,
+            opacity: 0,
+            duration: 2,
+            ease: "power1.inOut",
+            scrollTrigger: {
+                trigger: box4,
+                start: "top top",
+            }
+        })
+        // gsap.to(box1, {
+        //   scrollTrigger: {
+        //     markers: true,
+        //     trigger: box1,
+        //     pin: true, // pin the trigger element while active
+        //     start: "top top", // when the top of the trigger hits the top of the viewport
+        //     end: "+=500", // end after scrolling 500px beyond the start
+        //     scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+        //     snap: {
+        //     snapTo: "labels", // snap to the closest label in the timeline
+        //     duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        //     delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
+        //     ease: "power1.inOut", // the ease of the snap animation ("power3" by default)
+        //     },
+        //   },
+        // });
+
+        const legend = document.getElementById('legend')
+        let legendST = SplitText.create(legend, { type: "words" });
+        gsap.from(legendST.words, {
+            duration: 1,
+            y: -100,
+            opacity: 0,
+            rotation: "random(-80, 80)",
+            ease: "back",
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: legend,
+                start: "top 40%",
             }
         })
 
@@ -195,7 +240,7 @@ function smellingBallController() {
             ease: "elastic.out",
             scrollTrigger: {
                 trigger: talcoChip,
-                start: "top 50%",
+                start: "top 30%",
             }
         })
         gsap.from(limao, {
@@ -205,7 +250,7 @@ function smellingBallController() {
             ease: "elastic.out",
             scrollTrigger: {
                 trigger: limaoChip,
-                start: "top 30%",
+                start: "top 10%",
                 
             }
         })

@@ -4,7 +4,7 @@
     color="transparent"
     :density="mobile ? 'compact' : 'default'"
     class="px-md-10"
-    style="backdrop-filter: blur(5px); background-color: rgba(255, 255, 255, 0.1) !important;"
+    style="backdrop-filter: blur(2px); background-color: rgba(255, 255, 255, 0.02) !important;"
   >
 
    <template v-slot:prepend>
@@ -20,7 +20,7 @@
         variant="text"
         @click="changeTheme"
         class="mr-2"
-        :color="theme.current.value.dark ? 'primary' : 'warning'"
+        :color="theme.current.value.dark ? 'terciary' : 'warning'"
       ></v-btn>
       <div class="d-none d-md-flex">
         <v-btn color="logoColor" variant="flat" class="text-none font-weight-black text-bgsec ml-4 px-6" rounded="lg">
