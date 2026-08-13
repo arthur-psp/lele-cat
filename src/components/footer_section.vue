@@ -66,14 +66,6 @@
           </v-btn>
         </v-col> -->
       </v-row>
-
-      <v-divider class="my-8"></v-divider>
-
-      <v-row>
-        <v-col cols="12" class="text-center text-caption text-grey">
-          © {{ new Date().getFullYear() }} Lelê Cat - Feito com ❤️ no Rio Grande do Sul
-        </v-col>
-      </v-row>
     </v-container>
   </v-footer>
 </template>

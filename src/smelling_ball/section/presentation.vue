@@ -67,6 +67,27 @@
       </v-row>
     </div>
 
+    <v-row class="ma-0 video-section">
+      <v-col cols="12" class="d-flex justify-center pa-0 px-4">
+        <div class="video-wrap">
+          <video
+            ref="descVideoEl"
+            class="desc-video"
+            controls
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            @loadedmetadata="onDescVideoReady"
+          >
+            <source :src="descVideo" type="video/mp4" />
+            Seu navegador não suporta vídeo HTML5.
+          </video>
+        </div>
+      </v-col>
+    </v-row>
+
     <v-row class="mb-10">
       <v-col cols="12" class="text-center">
         <h2 class="text-h3 font-weight-black title-font mb-4">Conheça nossa linha</h2>
@@ -239,8 +260,8 @@
       </v-col>
     </v-row>
 
-    <v-row justify="space-evenly" class="my-10 px-4">
-      <v-col id="box1" data-speed="1.2" cols="6" md="2" class="d-flex flex-column align-center text-center">
+    <v-row id="benefits" justify="space-evenly" class="my-0 px-4 pt-10 pb-10">
+      <v-col id="box1" data-lag="3" cols="6" md="2" class="d-flex flex-column align-center text-center">
         <div >
           <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
             <v-icon icon="mdi-leaf" size="32" ></v-icon>
@@ -251,7 +272,7 @@
       </v-col>
 
       <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <div id="box2" data-speed="1.2">
+        <div id="box2" data-lag="3">
           <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
             <v-icon icon="mdi-clock-fast" size="32"></v-icon>
           </v-avatar>
@@ -261,7 +282,7 @@
       </v-col>
 
       <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <div id="box3" data-speed="1.2">
+        <div id="box3" data-lag="3">
           <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
             <v-icon icon="mdi-cat" size="32"></v-icon>
           </v-avatar>
@@ -271,7 +292,7 @@
       </v-col>
 
       <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <div id="box4" data-speed="1.2">
+        <div id="box4" data-lag="3">
           <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
             <v-icon icon="mdi-trending-up" size="32"></v-icon>
           </v-avatar>
@@ -284,15 +305,15 @@
     <v-row>
       <v-col class="d-flex align-center justify-center" cols="12" md="6">
         <div
-          class="text-center px-6 py-4 rounded-lg mx-4 blur-card"
+          class="text-center px-6 py-4 rounded-lg mx-4"
           style="max-width: 80%; border: 1px solid                 
             rgba(255,255,255,0.1); background: rgba(255, 255, 255, 0.04);         
            backdrop-filter: blur(10px);"     
         >
           <div
-            id="legend"
             class="font-weight-black"
             :class="mobile ? 'text-body-1' : 'text-h4'"
+            id="legend"
           >
             Elimina o cheiro de urina e fezes <span class="text-secondary">instantaneamente</span>, prolongando a vida útil da areia.
           </div>
@@ -301,7 +322,8 @@
       <v-col cols="6" class="d-flex align-center justify-center pa-0">
         <v-img
           :src="catImage"
-          class="rounded-xl overflow-visible"
+          id="cat-image"
+          class="rounded-xl"
           max-width="700"
         >
         </v-img>
@@ -360,6 +382,7 @@
 import { useDisplay } from "vuetify";
 import catImage from "../../assets/cat_image.png"
 import firstOptionVideo from "../../assets/firstOption.mp4"
+import descVideo from "../../assets/video_desc.mp4"
 import products from "../../assets/todas.png"
 import { smellingBallController } from "../controller/smelling_ball_controller";
 import { onMounted, onBeforeUnmount, ref, nextTick } from "vue";
@@ -377,40 +400,53 @@ const { controller } = smellingBallController()
 
 const heroSection = ref(null);
 const heroVideo = ref(null);
+const descVideoEl = ref(null);
 let videoScrollTrigger = null;
+
+function onDescVideoReady() {
+  ScrollTrigger.refresh();
+}
 
 function initVideoScrollScrub() {
   const video = heroVideo.value;
   const section = heroSection.value;
   if (!video || !section) return;
 
-  const bindScrub = () => {
-    videoScrollTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: 0,
-      end: "+=100%",
-      pin: true,
-      scrub: 0.5,
-      onUpdate: (self) => {
-        if (video.duration) {
-          const startOffset = 0.5; 
-          video.currentTime = startOffset + (self.progress * (video.duration - startOffset));
-        }
-      },
-    });
-  };
-
-  if (video.readyState >= 1) {
-    bindScrub();
-  } else {
-    video.addEventListener("loadedmetadata", bindScrub, { once: true });
-  }
+  videoScrollTrigger = ScrollTrigger.create({
+    trigger: section,
+    start: 0,
+    end: "+=100%",
+    pin: true,
+    scrub: 0.5,
+    onUpdate: (self) => {
+      if (video.duration) {
+        const startOffset = 0.5; 
+        video.currentTime = startOffset + (self.progress * (video.duration - startOffset));
+      }
+    },
+  });
   video.play().then(() => video.pause()).catch(() => {});
 }
 
+function refreshAfterImagesLoad() {
+  const imgs = Array.from(document.images);
+  Promise.allSettled(imgs.map(img => img.complete
+    ? Promise.resolve()
+    : new Promise(res => {
+        img.addEventListener("load", res, { once: true });
+        img.addEventListener("error", res, { once: true });
+      })
+  )).then(() => ScrollTrigger.refresh());
+}
+
 onMounted(async () => {
-  controller.initSmellingBallScroll()
+  controller.createSmoother()
   initVideoScrollScrub()
+  controller.initSmellingBallScroll()
+  await nextTick();
+  ScrollTrigger.refresh();
+  refreshAfterImagesLoad();
+  window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
 })
 
 onBeforeUnmount(() => {
@@ -541,6 +577,38 @@ const redirect = () => {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.video-section {
+  padding: 56px 0;
+}
+
+.video-wrap {
+  /* Vídeo é 9:16 (vertical). Largura limitada e proporcional à altura da tela,
+     para o vídeo nunca ultrapassar a viewport em nenhum tamanho de tela. */
+  width: 100%;
+  max-width: min(480px, calc((100vh - 120px) * 0.5625));
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  background: rgba(var(--v-theme-surface), 0.7);
+}
+
+.desc-video {
+  /* aspect-ratio reserva a altura (9:16) antes do metadata carregar,
+     evitando layout shift que deslocaria os triggers do ScrollTrigger abaixo */
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  background: rgba(var(--v-theme-surface), 0.7);
+}
+
+@media (max-width: 959px) {
+  .video-section {
+    padding: 32px 0;
+  }
 }
 
 .title-font {

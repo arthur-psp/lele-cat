@@ -8,21 +8,18 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
 function smellingBallController() {
     
-    const initSmellingBallScroll = () => {
+    // O ScrollSmoother PRECISA ser criado antes de qualquer ScrollTrigger com pin
+    // (requisito documentado do GSAP: "create the scrollSmoother before your
+    // scrollTriggers"). Por isso ele é exposto como passo separado e chamado
+    // primeiro no onMounted — antes do pin do hero (initVideoScrollScrub).
+    const createSmoother = () => {
         ScrollSmoother.create({
             smooth: 1,
-	        effects: true,
+            effects: true,
         })
+    }
 
-        const products = document.getElementById('products')
-        gsap.from(products, { 
-            duration: 2,
-            y: -200, 
-            ease: "bounce.out",
-            duration: 2,
-            rotate: "10"
-        })
-        
+    const initSmellingBallScroll = () => {
         const title = document.querySelector('#title')
         let titleST = SplitText.create(title, { type: "words" });
         const subtitle = document.querySelector('#subtitle')
@@ -47,50 +44,7 @@ function smellingBallController() {
             stagger: 0.25
         });
 
-        const box1 = document.getElementById('box1')
-        const box2 = document.getElementById('box2')
-        const box3 = document.getElementById('box3')
-        const box4 = document.getElementById('box4')
-        gsap.from(box1, { 
-           y: -100,
-            opacity: 0,
-            duration: 3,
-            ease: "elastic.out",
-            scrollTrigger: {
-                trigger: box1,
-                start: "top top",
-            }
-        })
-        gsap.from(box3, { 
-           y: -100,
-            opacity: 0,
-            duration: 3,
-            ease: "elastic.out",
-            scrollTrigger: {
-                trigger: box3,
-                start: "top top",
-            }
-        })
-        gsap.from(box2, { 
-           y: -100,
-            opacity: 0,
-            duration: 2,
-            ease: "power1.inOut",
-            scrollTrigger: {
-                trigger: box2,
-                start: "top top",
-            }
-        })
-        gsap.from(box4, { 
-           y: -100,
-            opacity: 0,
-            duration: 2,
-            ease: "power1.inOut",
-            scrollTrigger: {
-                trigger: box4,
-                start: "top top",
-            }
-        })
+        
         // gsap.to(box1, {
         //   scrollTrigger: {
         //     markers: true,
@@ -108,102 +62,7 @@ function smellingBallController() {
         //   },
         // });
 
-        const legend = document.getElementById('legend')
-        let legendST = SplitText.create(legend, { type: "words" });
-        gsap.from(legendST.words, {
-            duration: 1,
-            y: -100,
-            opacity: 0,
-            rotation: "random(-80, 80)",
-            ease: "back",
-            stagger: 0.1,
-            scrollTrigger: {
-                trigger: legend,
-                start: "top 40%",
-            }
-        })
-
-        const photoAllProduct = document.getElementById('all-product')
-        gsap.from(photoAllProduct, {
-            
-            opacity: 0,
-            duration: 1,
-            ease: "power3.in",
-            scrollTrigger: {
-                trigger: photoAllProduct,
-                start: "top 80%",
-            }
-        })
-
-        const offerCard = document.getElementById('offer-card')
-        gsap.from(offerCard, {
-            x: 100,
-            opacity: 0,
-            duration: 1.2,
-            ease: "power3.in",
-            scrollTrigger: {
-                trigger: offerCard,
-                start: "top 80%",
-            }
-        })
-
-        const frag = document.getElementById('frag')
-        let fragST = SplitText.create(frag, { type: "words" });
-        const dec = document.getElementById('dec')
-        let decST = SplitText.create(dec, { type: "words" });
-        const duration = document.getElementById('duration')
-        let durationST = SplitText.create(duration, { type: "words" });
-        const natural = document.getElementById('natural')
-        let naturalST = SplitText.create(natural, { type: "words" });
-
-        gsap.from(fragST.words, {
-            duration: 1,
-            y: -100,
-            opacity: 0,
-            rotation: "random(-80, 80)",
-            ease: "back",
-            stagger: 0.1,
-            scrollTrigger: {
-                trigger: frag,
-                start: "top 80%"
-            }
-        });
-        gsap.from(decST.words, {
-            duration: 1,
-            y: -100,
-            opacity: 0,
-            rotation: "random(-80, 80)",
-            ease: "back",
-            stagger: 0.1,
-            scrollTrigger: {
-                trigger: frag,
-                start: "top 70%"
-            }
-        });
-        gsap.from(durationST.words, {
-            duration: 1,
-            y: -100,
-            opacity: 0,
-            rotation: "random(-80, 80)",
-            ease: "back",
-            stagger: 0.1,
-            scrollTrigger: {
-                trigger: frag,
-                start: "top 60%"
-            }
-        });
-        gsap.from(naturalST.words, {
-            duration: 1,
-            y: -100,
-            opacity: 0,
-            rotation: "random(-80, 80)",
-            ease: "back",
-            stagger: 0.1,
-            scrollTrigger: {
-                trigger: frag,
-                start: "top 50%"
-            }
-        });
+   
 
         const lavanda = document.getElementById('lavanda')
         const lavandaChip = document.getElementById('lavanda-chip')
@@ -255,11 +114,66 @@ function smellingBallController() {
             }
         })
 
+        const legend = document.getElementById('legend')
+        let legendST = SplitText.create(legend, { type: "words" });
+        gsap.from(legendST.words, {
+            duration: 1,
+            y: -100,
+            opacity: 0,
+            rotation: "random(-80, 80)",
+            ease: "back",
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: legend,
+                start: "center center",
+                
+            }
+        })
+
+        const catImage = document.getElementById('cat-image')
+        gsap.from(catImage, {
+            x: 200,
+            opacity: 0,
+            duration: 2,
+            ease: "elastic.inOut",
+            scrollTrigger: {
+                trigger: catImage,
+                start: "top top",
+            }
+        })
+
+        const photoAllProduct = document.getElementById('all-product')
+        gsap.from(photoAllProduct, {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.in",
+            scrollTrigger: {
+                trigger: photoAllProduct,
+                start: "top 80%",
+            }
+        })
+
+        const offerCard = document.getElementById('offer-card')
+        gsap.from(offerCard, {
+            x: 100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.in",
+            scrollTrigger: {
+                trigger: offerCard,
+                start: "top 80%",
+            }
+        })
+
+        
+
         return null
     }
 
     return {
         controller: {
+            createSmoother,
             initSmellingBallScroll,
         }
     }

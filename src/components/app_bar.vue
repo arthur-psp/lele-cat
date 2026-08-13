@@ -4,14 +4,14 @@
     color="transparent"
     :density="mobile ? 'compact' : 'default'"
     class="px-md-10"
+    height="70"
     style="backdrop-filter: blur(2px); background-color: rgba(255, 255, 255, 0.02) !important;"
   >
 
-   <template v-slot:prepend>
-    <v-img :src="fiveicon" width="80" class="cursor-pointer"></v-img>
-   </template>
-    <template v-slot:title>
-      <div class="d-flex justify-start align-center dancing-script">Lele cat</div>
+    <template v-slot:prepend>
+      <div style="width: 210px; height: 230px; flex: none; display: flex; justify-content: center;">
+        <v-img :src="vetor" width="100%" height="100%" contain class="cursor-pointer"></v-img>
+      </div>
     </template>
 
     <template v-slot:append>
@@ -59,6 +59,8 @@
 import logoLight from "../assets/logo/logo_light-removebg-preview.png"
 import logoDark from "../assets/logo/logo_dark-removebg-preview.png"
 import fiveicon from "../assets/logo/fiveicon.png"
+import logo from "../assets/logo/logo.png"
+import vetor from "../assets/logo/vetor.png"
 
 import { useTheme } from "vuetify";
 import { onMounted, ref } from "vue";
