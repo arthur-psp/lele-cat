@@ -70,20 +70,16 @@
     <v-row class="ma-0 video-section">
       <v-col cols="12" class="d-flex justify-center pa-0 px-4">
         <div class="video-wrap">
-          <video
-            ref="descVideoEl"
+          <iframe
             class="desc-video"
-            controls
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            @loadedmetadata="onDescVideoReady"
-          >
-            <source :src="descVideo" type="video/mp4" />
-            Seu navegador não suporta vídeo HTML5.
-          </video>
+            src="https://www.instagram.com/reel/Db1WeEcoP8_/embed"
+            title="Reel Lelê Cat no Instagram"
+            frameborder="0"
+            scrolling="no"
+            allowtransparency="true"
+            allowfullscreen="true"
+            loading="lazy"
+          ></iframe>
         </div>
       </v-col>
     </v-row>
@@ -382,7 +378,6 @@
 import { useDisplay } from "vuetify";
 import catImage from "../../assets/cat_image.png"
 import firstOptionVideo from "../../assets/firstOption.mp4"
-import descVideo from "../../assets/video_desc.mp4"
 import products from "../../assets/todas.png"
 import { smellingBallController } from "../controller/smelling_ball_controller";
 import { onMounted, onBeforeUnmount, ref, nextTick } from "vue";
@@ -596,12 +591,11 @@ const redirect = () => {
 }
 
 .desc-video {
-  /* aspect-ratio reserva a altura (9:16) antes do metadata carregar,
-     evitando layout shift que deslocaria os triggers do ScrollTrigger abaixo */
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 9 / 16;
+  border: 0;
   background: rgba(var(--v-theme-surface), 0.7);
 }
 
