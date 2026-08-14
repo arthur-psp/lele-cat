@@ -15,7 +15,7 @@
               color="primary"
               size="large"
               class="mr-2"
-              href="https://www.instagram.com/lelecat.rs"
+              href="https://www.instagram.com/lelecat.desodorizante?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
               target="_blank"
             ></v-btn>
             <v-btn
@@ -23,7 +23,7 @@
               variant="text"
               color="primary"
               size="large"
-              href="https://wa.me/SEU_NUMERO_AQUI"
+              href="https://wa.me/54996257038"
               target="_blank"
             ></v-btn>
           </div>
@@ -38,15 +38,15 @@
           </div>
           <div class="d-flex align-center justify-center justify-md-start mb-3 text-grey-darken-2">
             <v-icon icon="mdi-instagram" size="18" class="mr-2 text-primary"></v-icon>
-            <span class="text-body-2">@lelecat.rs</span>
+            <span class="text-body-2">@lelecat.desodorizante</span>
           </div>
           <div class="d-flex align-center justify-center justify-md-start text-grey-darken-2">
             <v-icon icon="mdi-email" size="18" class="mr-2 text-primary"></v-icon>
-            <span class="text-body-2">contato@lelecat.com.br</span>
+            <span class="text-body-2">rfimpdistribuidora@gmail.com</span>
           </div>
         </v-col>
 
-        <v-col cols="12" md="3" class="text-center text-md-left">
+        <!-- <v-col cols="12" md="3" class="text-center text-md-left">
           <div class="font-weight-black text-subtitle-1 mb-4 text-uppercase">Links Úteis</div>
           <v-btn 
             variant="text" 
@@ -64,15 +64,7 @@
           >
             Política de Privacidade
           </v-btn>
-        </v-col>
-      </v-row>
-
-      <v-divider class="my-8"></v-divider>
-
-      <v-row>
-        <v-col cols="12" class="text-center text-caption text-grey">
-          © {{ new Date().getFullYear() }} Lelê Cat - Feito com ❤️ no Rio Grande do Sul
-        </v-col>
+        </v-col> -->
       </v-row>
     </v-container>
   </v-footer>

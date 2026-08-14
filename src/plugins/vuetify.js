@@ -9,6 +9,7 @@ const dark = {
   colors: {
     background: '#000000',
     bgsec: '#1a1a1aff',
+    surface: '#1a1a1aff',
     colorTable: '#212121',
     textTable: '#ffffff',
     activeItemNavDrawer: '#ffffff',
@@ -21,6 +22,7 @@ const dark = {
     'on-bg': '#ffffff',
     primary: '#288334ff',
     secondary: '#39B54A',
+    terciary: '#083a1e',
     lavanda: '#7b1c8a',
     hortela: '#0f4d1e',
     talcoBebe: '#3970b3',
@@ -42,7 +44,7 @@ const light = {
   dark: false,
   colors: {
     background: '#F2F2F7',
-    bgsec: '#e9e9e9ff',
+    bgsec: '#1a1a1aff',
     colorTable: '#ffffff',
     textTable: '#000000',
     activeItemNavDrawer: '#000000',
@@ -58,6 +60,7 @@ const light = {
     'on-bg': '#000000',
     primary: '#288334ff',
     secondary: '#39B54A',
+    terciary: '#083a1e',
     lavanda: '#7b1c8a',
     hortela: '#0f4d1e',
     talcoBebe: '#3970b3',

@@ -1,16 +1,17 @@
 <template>
   <v-app-bar 
     elevation="0" 
+    color="transparent"
     :density="mobile ? 'compact' : 'default'"
     class="px-md-10"
-    style="background-color: rgba(var(--v-theme-surface)) !important; border-bottom: 1px solid rgba(0,0,0,0.05);"
+    height="70"
+    style="backdrop-filter: blur(2px); background-color: rgba(255, 255, 255, 0.02) !important;"
   >
 
-   <template v-slot:prepend>
-    <v-img :src="theme.current.value.dark ? fiveicon : logoLight" width="80" class="cursor-pointer"></v-img>
-   </template>
-    <template v-slot:title>
-      <div class="d-flex justify-start align-center dancing-script">Lele cat</div>
+    <template v-slot:prepend>
+      <div style="width: 210px; height: 230px; flex: none; display: flex; justify-content: center;">
+        <v-img :src="vetor" width="100%" height="100%" contain class="cursor-pointer"></v-img>
+      </div>
     </template>
 
     <template v-slot:append>
@@ -19,20 +20,20 @@
         variant="text"
         @click="changeTheme"
         class="mr-2"
-        :color="theme.current.value.dark ? 'primary' : 'warning'"
+        :color="theme.current.value.dark ? 'terciary' : 'warning'"
       ></v-btn>
       <div class="d-none d-md-flex">
-        <v-btn color="secondary" variant="flat" class="text-none font-weight-black ml-4 px-6" rounded="lg">
+        <v-btn color="logoColor" variant="flat" class="text-none font-weight-black text-bgsec ml-4 px-6" rounded="lg">
           Onde Comprar
           <v-icon icon="mdi-chevron-down" end></v-icon>
           
           <v-menu activator="parent" transition="slide-y-transition">
             <v-list rounded="xl" class="mt-2 pa-5">
               <v-list-item 
-                prepend-icon="mdi-shopping" 
-                title="Comprar na Shopee" 
-                base-color="deep-orange"
-                href="https://shopee.com.br/product/219423316/58256794939"
+                prepend-icon="mdi-instagram" 
+                title="Ver Instragram" 
+                base-color="logoColor"
+                href="https://www.instagram.com/lelecat.desodorizante?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
                 target="_blank"
                 rounded="lg"
               ></v-list-item>
@@ -58,6 +59,8 @@
 import logoLight from "../assets/logo/logo_light-removebg-preview.png"
 import logoDark from "../assets/logo/logo_dark-removebg-preview.png"
 import fiveicon from "../assets/logo/fiveicon.png"
+import logo from "../assets/logo/logo.png"
+import vetor from "../assets/logo/vetor.png"
 
 import { useTheme } from "vuetify";
 import { onMounted, ref } from "vue";

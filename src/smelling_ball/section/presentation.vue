@@ -1,135 +1,451 @@
 <template>
-  <v-container fluid class=" pa-0 ma-0">
-    
-    <v-row class="background ma-0 align-center justify-center" style="min-height: 80vh;">
-      
-      <v-col 
-        cols="12" 
-        md="6" 
-        class="d-flex flex-column align-center justify-center pa-10"
-        style="height: 80vh;"
+  <v-container fluid class=" pa-0 ma-0 bg-bgsec">
+    <div
+      ref="heroSection"
+      class="hero-wrapper position-relative overflow-hidden"
+    >
+      <div class="hero-video-wrapper">
+        <video
+          ref="heroVideo"
+          class="hero-video"
+          muted
+          playsinline
+          preload="auto"
+        >
+          <source :src="firstOptionVideo + '#t=0.5'" type="video/mp4" />
+        </video>
+      </div>
+
+      <v-row
+        class="ma-0 align-center justify-center position-relative"
+        style="z-index: 1; height: 100%;"
       >
-        <div
-          class="font-weight-black text-center blur-container font"
-          :class="mobile ? 'text-h4' : 'text-h2'" 
-          style="max-width: 800px;"
+        <v-col
+          cols="12"
+          md="6"
+          class="d-flex flex-column align-center justify-center pa-10 position-relative"
+          style="height: 80vh; z-index: 1;"
         >
-          <div 
-            class="pa-6 rounded-xl mb-16 position-absolute w-100 h-100 highlight-bg" 
-            style="z-index: -1; filter: blur(10px);"
-          ></div>
-          <div id="title">A tecnologia <span class="text-logoColor">natural</span> que elimina <span class="text-logoColor">100% dos odores</span> da areia.</div>
-        </div>
-        
-        <div
-          class="mt-12 text-center font-weight-medium"
-          :class="mobile ? 'text-h6' : 'text-h5'" 
-          style="max-width: 600px;"
-          id="subtitle"
-        >
-          O Lelê Cat elimina odores indesejados de forma instantânea e natural. O cuidado que sua casa precisa e o carinho que seu gato merece.
-        </div>
-
-        <v-btn 
-          text="Conheça a Linha"
-          class="text-body-1 bg-secondary font-weight-black mt-8"
-          rounded="lg"
-          size="x-large"
-          elevation="4"
-          @click="redirect"
-        ></v-btn>
-      </v-col>
-
-      <v-col 
-        id="products"
-        data-lag="0.2"
-        cols="12" 
-        md="6" 
-        class="d-flex align-center justify-center pa-5"
-      >
-        <v-img :src="products" max-width="800"></v-img>
-      </v-col>
-    </v-row>
-
-    <v-row justify="space-evenly" class="my-10 px-4">
-      <v-col data-speed="1.5" cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-leaf" size="32" id="box1"></v-icon>
-        </v-avatar>
-        <div class="text-subtitle-1 font-weight-bold">100% Natural</div>
-        <div class="text-caption">Seguro para seu pet e para o planeta</div>
-      </v-col>
-
-      <v-col data-speed="1.2" cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-clock-fast" size="32" id="box2"></v-icon>
-        </v-avatar>
-        <div class="text-subtitle-1 font-weight-bold">Ação Instantânea</div>
-        <div class="text-caption">Elimina odores no momento do contato</div>
-      </v-col>
-
-      <v-col data-speed="1.5" cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-cat" size="32" id="box3"></v-icon>
-        </v-avatar>
-        <div class="text-subtitle-1 font-weight-bold">Amigo dos Gatos</div>
-        <div class="text-caption">Sem fragrâncias irritantes ou químicas</div>
-      </v-col>
-
-      <v-col data-speed="1.2" cols="6" md="2" class="d-flex flex-column align-center text-center">
-        <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
-          <v-icon icon="mdi-trending-up" size="32" id="box4"></v-icon>
-        </v-avatar>
-        <div class="text-subtitle-1 font-weight-bold">Alto Rendimento</div>
-        <div class="text-caption">Prolonga em até 3x a vida útil da areia</div>
-      </v-col>
-    </v-row>
-
-    <v-row class="ma-0 mt-16">
-      <v-col cols="12" class="d-flex align-center justify-center position-relative pa-0">
-        <v-img 
-          :src="catImage" 
-          class="rounded-xl overflow-visible" 
-          max-width="500"
-        >
-          <div class="fill-height d-flex align-start justify-center">
+          <div
+            class="font-weight-black text-center blur-container font"
+            :class="mobile ? 'text-h4' : 'text-h2'"
+            style="max-width: 800px;"
+          >
             <div
-              id="finality"
-              class="text-center px-6 py-4 rounded-xl mx-4 blur-card"
-              :class="mobile ? 'text-caption' : 'text-body-2'" 
-              style="max-width: 90%; border: 1px solid                 
-                rgba(255,255,255,0.3); background: rgba(255, 255, 255, 0.1);         
-               backdrop-filter: blur(12px); box-shadow: 0 8px 32px 0 rgba(0, 0, 0,  
-                0.1);"     
-            >
-              <div 
-                id="legend"
-                class="font-weight-black" 
-                :class="mobile ? 'text-body-1' : 'text-h6'"
-              >
-                Elimina o cheiro de urina e fezes <span class="text-secondary">instantaneamente</span>, prolongando a vida útil da areia.
-              </div>
-            </div>
+              class="pa-6 rounded-xl mb-16 position-absolute w-100 h-100 highlight-bg"
+              style="z-index: -1; filter: blur(10px);"
+            ></div>
+            <div class="" id="title">A tecnologia <span class="text-terciary">natural</span> que elimina <span class="text-terciary">100% dos odores</span> da areia.</div>
           </div>
+
+          <div
+            class="mt-12 text-center font-weight-medium text-bgsec"
+            :class="mobile ? 'text-h6' : 'text-h5'"
+            style="max-width: 600px;"
+            id="subtitle"
+          >
+            O Lelê Cat elimina odores indesejados de forma instantânea e natural. O cuidado que sua casa precisa e o carinho que seu gato merece.
+          </div>
+
+          <v-btn
+            text="Conheça a Linha"
+            class="text-body-1 bg-bgsec font-weight-black mt-8"
+            rounded="lg"
+            color="terciary"
+            variant="flat"
+            size="x-large"
+            elevation="4"
+            @click="redirect"
+          ></v-btn>
+        </v-col>
+
+        <v-col
+          cols="12"
+          md="6"
+        >
+        </v-col>
+      </v-row>
+    </div>
+
+    <v-row class="ma-0 video-section">
+      <v-col cols="12" class="d-flex justify-center pa-0 px-4">
+        <div class="video-wrap">
+          <iframe
+            class="desc-video"
+            src="https://www.instagram.com/reel/Db1WeEcoP8_/embed"
+            title="Reel Lelê Cat no Instagram"
+            frameborder="0"
+            scrolling="no"
+            allowtransparency="true"
+            allowfullscreen="true"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </v-col>
+    </v-row>
+
+    <v-row class="mb-10">
+      <v-col cols="12" class="text-center">
+        <h2 class="text-h3 font-weight-black title-font mb-4">Conheça nossa linha</h2>
+        <p class="text-h6 text-grey-darken-1">Fragrâncias exclusivas, todas com o mesmo padrão de excelência</p>
+      </v-col>
+    </v-row>
+
+    <!-- Cards de Benefícios Compartilhados (Legenda Separada) -->
+    <v-row class="mb-16 justify-center">
+      <v-col cols="12" md="10">
+        <v-card rounded="xl" class="pa-8 blur-card-products" elevation="0">
+          <v-row>
+            <v-col id="frag" cols="6" sm="3" class="text-center">
+              <v-icon icon="mdi-scent" color="primary" size="32" class="mb-2"></v-icon>
+              <div class="text-subtitle-2 font-weight-bold">Liberação de</div>
+              <div class="text-h6 font-weight-black text-primary">Fragrância</div>
+            </v-col>
+            <v-col id="dec" cols="6" sm="3" class="text-center">
+              <v-icon icon="mdi-molecule" color="primary" size="32" class="mb-2"></v-icon>
+              <div class="text-subtitle-2 font-weight-bold">Decompõe o</div>
+              <div class="text-h6 font-weight-black text-primary">mau Cheiro</div>
+            </v-col>
+            <v-col id="duration" cols="6" sm="3" class="text-center">
+              <v-icon icon="mdi-clock-outline" color="primary" size="32" class="mb-2"></v-icon>
+              <div class="text-subtitle-2 font-weight-bold">7 dias de</div>
+              <div class="text-h6 font-weight-black text-primary">Frescor</div>
+            </v-col>
+            <v-col id="natural" cols="6" sm="3" class="text-center">
+              <v-icon icon="mdi-leaf" color="primary" size="32" class="mb-2"></v-icon>
+              <div class="text-subtitle-2 font-weight-bold">100% Natural e</div>
+              <div class="text-h6 font-weight-black text-primary">Biodegradável</div>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <!-- Grid de Produtos -->
+    <v-row>
+      <!-- Lavanda -->
+      <v-col id="lavanda" cols="12" md="6" class="d-flex align-center justify-center">
+        <v-card rounded="xl" flat width="100%" class=" pa-4 text-center d-flex flex-column align-center">
+          <v-chip 
+            id="lavanda-chip"
+            class="font-weight-black mb-6 px-6" 
+            color="#7b1c8a" 
+            variant="flat" 
+          >
+            Lavanda
+          </v-chip>
+                
+          <v-img :src="lavanda" width="55%" class="product-img"></v-img>
+        
+          <div class="d-flex align-baseline justify-center mb-4">
+            <span class="text-h5 font-weight-medium">R$ 55,00</span>
+            <span class="text-caption text-medium-emphasis ml-1">/ un</span>
+          </div>
+
+          <v-btn
+            color="logoColor"
+            width="250"
+            size="large"
+            rounded="lg"
+            prepend-icon="mdi-cart-outline"
+            class="font-weight-bold buy-animation"
+            elevation="0"
+          >
+            Comprar
+          </v-btn>
+        </v-card>
+      </v-col>
+
+      <!-- Hortelã -->
+      <v-col id="hortela" cols="12" md="6" class="d-flex align-center justify-center">
+        <v-card rounded="xl" flat width="100%" class="pa-6 text-center d-flex flex-column align-center">
+          
+          <v-chip id="hortela-chip" class="font-weight-black mb-4 px-6" color="hortela" variant="flat">
+            Hortelã
+          </v-chip>
+
+          <v-img :src="hortela" width="55%" class="product-img"></v-img>
+
+
+          <div class="d-flex align-baseline justify-center mb-4">
+            <span class="text-h5 font-weight-medium">R$ 55,00</span>
+            <span class="text-caption text-medium-emphasis ml-1">/ un</span>
+          </div>
+
+          <v-btn
+            color="logoColor"
+            width="250"
+            size="large"
+            rounded="lg"
+            prepend-icon="mdi-cart-outline"
+            class="font-weight-bold buy-animation"
+            elevation="0"
+          >
+            Comprar
+          </v-btn>
+
+        </v-card>
+      </v-col>
+
+      <v-divider v-if="!mobile" class="my-4"></v-divider>
+
+      <!-- Talco de Bebê -->
+      <v-col id="talco" cols="12" md="6" class="d-flex align-center justify-center">
+        <v-card rounded="xl" flat width="100%" class="pa-4 text-center d-flex flex-column align-center">
+          <v-chip 
+            id="talco-chip"
+            class="font-weight-black mb-6 px-6" 
+            color="#3970b3" 
+            variant="flat" 
+          >
+            Talco de Bebê
+          </v-chip>
+                  
+          <v-img :src="talcoDeBebe" width="55%" class="product-img"></v-img>
+
+          <div class="d-flex align-baseline justify-center mb-4">
+            <span class="text-h5 font-weight-medium">R$ 55,00</span>
+            <span class="text-caption text-medium-emphasis ml-1">/ un</span>
+          </div>
+
+          <v-btn
+            color="logoColor"
+            width="250"
+            size="large"
+            rounded="lg"
+            prepend-icon="mdi-cart-outline"
+            class="font-weight-bold buy-animation"
+            elevation="0"
+          >
+            Comprar
+          </v-btn>
+        </v-card>
+      </v-col>
+
+      <!-- Limão -->
+      <v-col id="limao" cols="12" md="6" class="d-flex align-center justify-center">
+        <v-card rounded="xl" flat width="100%" class="pa-4 text-center d-flex flex-column align-center">
+          <v-chip 
+            id="limao-chip"
+            class="font-weight-black mb-6 px-6" 
+            color="limao" 
+            variant="flat" 
+          >
+            Limão
+          </v-chip>
+             
+          <v-img :src="limao" width="55%" class="product-img"></v-img>
+
+          <div class="d-flex align-baseline justify-center mb-4">
+            <span class="text-h5 font-weight-medium">R$ 55,00</span>
+            <span class="text-caption text-medium-emphasis ml-1">/ un</span>
+          </div>
+          
+          <v-btn
+            color="logoColor"
+            width="250"
+            size="large"
+            rounded="lg"
+            prepend-icon="mdi-cart-outline"
+            class="font-weight-bold buy-animation"
+            elevation="0"
+          >
+            Comprar
+          </v-btn>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row id="benefits" justify="space-evenly" class="my-0 px-4 pt-10 pb-10">
+      <v-col id="box1" data-lag="3" cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <div >
+          <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+            <v-icon icon="mdi-leaf" size="32" ></v-icon>
+          </v-avatar>
+          <div class="text-subtitle-1 font-weight-bold">100% Natural</div>
+          <div class="text-caption">Seguro para seu pet e para o planeta</div>
+        </div>
+      </v-col>
+
+      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <div id="box2" data-lag="3">
+          <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+            <v-icon icon="mdi-clock-fast" size="32"></v-icon>
+          </v-avatar>
+          <div class="text-subtitle-1 font-weight-bold">Ação Instantânea</div>
+          <div class="text-caption">Elimina odores no momento do contato</div>
+        </div>
+      </v-col>
+
+      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <div id="box3" data-lag="3">
+          <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+            <v-icon icon="mdi-cat" size="32"></v-icon>
+          </v-avatar>
+          <div class="text-subtitle-1 font-weight-bold">Amigo dos Gatos</div>
+          <div class="text-caption">Sem fragrâncias irritantes ou químicas</div>
+        </div>
+      </v-col>
+
+      <v-col cols="6" md="2" class="d-flex flex-column align-center text-center">
+        <div id="box4" data-lag="3">
+          <v-avatar color="primary" variant="tonal" size="64" class="mb-3">
+            <v-icon icon="mdi-trending-up" size="32"></v-icon>
+          </v-avatar>
+          <div class="text-subtitle-1 font-weight-bold">Alto Rendimento</div>
+          <div class="text-caption">Prolonga em até 3x a vida útil da areia</div>
+        </div>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col class="d-flex align-center justify-center" cols="12" md="6">
+        <div
+          class="text-center px-6 py-4 rounded-lg mx-4"
+          style="max-width: 80%; border: 1px solid                 
+            rgba(255,255,255,0.1); background: rgba(255, 255, 255, 0.04);         
+           backdrop-filter: blur(10px);"     
+        >
+          <div
+            class="font-weight-black"
+            :class="mobile ? 'text-body-1' : 'text-h4'"
+            id="legend"
+          >
+            Elimina o cheiro de urina e fezes <span class="text-secondary">instantaneamente</span>, prolongando a vida útil da areia.
+          </div>
+        </div>
+      </v-col>
+      <v-col cols="6" class="d-flex align-center justify-center pa-0">
+        <v-img
+          :src="catImage"
+          id="cat-image"
+          class="rounded-xl"
+          max-width="700"
+        >
         </v-img>
       </v-col>
     </v-row>
-    
+
+    <v-row class="ma-0 products-section">
+      <v-col cols="12" md="6" class="d-flex align-center justify-center pa-md-8">
+        <div class="product-image-wrap position-relative">
+          <div class="product-glow"></div>
+          <img
+            id="all-product"
+            :src="products"
+            alt="Linha completa de produtos Lelê Cat"
+            class="product-image"
+          />
+        </div>
+      </v-col>
+
+      <v-col id="offer-card" cols="12" md="6" class="d-flex align-center justify-center pa-md-8">
+        <div class="offer-card">
+          <div class="d-flex align-center mb-3">
+            <v-chip color="bgsec" variant="flat" class="font-weight-black text-logoColor mr-3">OFERTA</v-chip>
+            <span class="text-bgsec font-weight-black">-20% OFF comprando 4 un.</span>
+          </div>
+
+          <h3 class="offer-card__title text-bgsec font-weight-black mb-2">Lelê Cat Desodorizante</h3>
+          <p class="text-bgsec mb-6">
+            Elimina 100% dos odores da areia de forma instantânea e natural.
+          </p>
+
+          <div class="offer-card__price text-bgsec mb-6">
+            <div class="old-price">De R$ 200,00</div>
+            <div class="d-flex align-end">
+              <span class="current-price">R$ 159</span>
+              <span class="cents mb-1">,60</span>
+            </div>
+          </div>
+
+          <v-btn
+            text="Comprar Agora"
+            block
+            size="x-large"
+            rounded="xl"
+            class="text-body-1 bg-bgsec font-weight-black text-logoColor"
+            elevation="6"
+            @click="redirect"
+          ></v-btn>
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script setup>
 import { useDisplay } from "vuetify";
 import catImage from "../../assets/cat_image.png"
+import firstOptionVideo from "../../assets/firstOption.mp4"
 import products from "../../assets/todas.png"
 import { smellingBallController } from "../controller/smelling_ball_controller";
-import { onMounted } from "vue";
+import { onMounted, onBeforeUnmount, ref, nextTick } from "vue";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import lavanda from "../../assets/lavanda.png"
+import hortela from "../../assets/hortela.png"
+import talcoDeBebe from "../../assets/talco_de_bebe.png"
+import limao from "../../assets/limao.png"
+
+gsap.registerPlugin(ScrollTrigger);
 
 const { mobile } = useDisplay();
 const { controller } = smellingBallController()
 
-onMounted(() => {
+const heroSection = ref(null);
+const heroVideo = ref(null);
+const descVideoEl = ref(null);
+let videoScrollTrigger = null;
+
+function onDescVideoReady() {
+  ScrollTrigger.refresh();
+}
+
+function initVideoScrollScrub() {
+  const video = heroVideo.value;
+  const section = heroSection.value;
+  if (!video || !section) return;
+
+  videoScrollTrigger = ScrollTrigger.create({
+    trigger: section,
+    start: 0,
+    end: "+=100%",
+    pin: true,
+    scrub: 0.5,
+    onUpdate: (self) => {
+      if (video.duration) {
+        const startOffset = 0.5; 
+        video.currentTime = startOffset + (self.progress * (video.duration - startOffset));
+      }
+    },
+  });
+  video.play().then(() => video.pause()).catch(() => {});
+}
+
+function refreshAfterImagesLoad() {
+  const imgs = Array.from(document.images);
+  Promise.allSettled(imgs.map(img => img.complete
+    ? Promise.resolve()
+    : new Promise(res => {
+        img.addEventListener("load", res, { once: true });
+        img.addEventListener("error", res, { once: true });
+      })
+  )).then(() => ScrollTrigger.refresh());
+}
+
+onMounted(async () => {
+  controller.createSmoother()
+  initVideoScrollScrub()
   controller.initSmellingBallScroll()
+  await nextTick();
+  ScrollTrigger.refresh();
+  refreshAfterImagesLoad();
+  window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+})
+
+onBeforeUnmount(() => {
+  videoScrollTrigger?.kill();
 })
 
 const redirect = () => {
@@ -138,58 +454,183 @@ const redirect = () => {
 </script>
 
 <style scoped>
-.text-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 50px;
-  z-index: 1;
-}
-
 .font {
   font-family: 'Playfair+Display' !important;
 }
 
-.background {
-  background-image: url("../../assets/background2.png");
+.products-section {
   width: 100%;
-  min-height: 60vh; 
-  background-size: 120%; 
-  background-position: center;
-  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 24px 16px;
+}
 
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 70%,
-    rgba(0, 0, 0, 0) 100% 
-  );
-  
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 70%,
-    rgba(0, 0, 0, 0) 100%
+.product-image-wrap {
+  z-index: 2;
+  width: 100%;
+  max-width: 850px;
+}
+
+.product-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.product-glow {
+  position: absolute;
+  inset: 8%;
+  background: radial-gradient(circle, rgba(var(--v-theme-logoColor), 0.28) 0%, transparent 70%);
+  filter: blur(12px);
+  z-index: 0;
+}
+
+.offer-card {
+  background: rgb(var(--v-theme-logoColor));
+  border-radius: 32px;
+  padding: 40px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.offer-card__title {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(24px, 3vw, 36px);
+  line-height: 1.2;
+}
+
+.old-price {
+  font-size: 20px;
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.current-price {
+  font-family: 'Playfair Display', serif !important;
+  font-size: clamp(52px, 6vw, 72px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.cents {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+@media (min-width: 960px) {
+  /* Imagem sobrepõe levemente o card de oferta */
+  .product-image-wrap {
+    margin-right: -70px;
+  }
+}
+
+@media (max-width: 959px) {
+  .products-section {
+    padding: 24px 8px;
+  }
+
+  .offer-card {
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+}
+
+.hero-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.hero-video-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-video-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(26, 26, 26, 1) 0%,
+    rgba(26, 26, 26, 0) 5%
   );
 }
 
-@media (max-width: 960px) {
-  .background {
-    background-size: cover;
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-    mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 50%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 1) 50%,
-      rgba(0, 0, 0, 0) 100%
-    );
+.video-section {
+  padding: 56px 0;
+}
+
+.video-wrap {
+  /* Vídeo é 9:16 (vertical). Largura limitada e proporcional à altura da tela,
+     para o vídeo nunca ultrapassar a viewport em nenhum tamanho de tela. */
+  width: 100%;
+  max-width: min(480px, calc((100vh - 120px) * 0.5625));
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  background: rgba(var(--v-theme-surface), 0.7);
+}
+
+.desc-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  border: 0;
+  background: rgba(var(--v-theme-surface), 0.7);
+}
+
+@media (max-width: 959px) {
+  .video-section {
+    padding: 32px 0;
   }
+}
+
+.title-font {
+  font-family: 'Playfair Display', serif !important;
+}
+
+.buy-animation {
+  transition: transform 0.3s ease;
+}
+
+.buy-animation:hover {
+  transform: translateY(-2px);
+}
+
+.blur-card-products {
+  background: rgba(var(--v-theme-surface), 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--v-theme-primary), 0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03) !important;
+}
+
+.v-theme--dark .blur-card-products {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.product-img {
+  max-width: 50% !important;
 }
 </style>
