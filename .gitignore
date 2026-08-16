@@ -26,3 +26,5 @@ dist-ssr
 # Ignorar vídeos pesados
 *.mp4
 *.MOV
+
+.env

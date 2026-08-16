@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 
 import HomePage from "../components/home_page.vue"
+import PaymentView from "../module/payment/view/payment_view.vue"
 
 const routes = [
     {
@@ -14,6 +15,11 @@ const routes = [
         //     },
             
         // ],
+    },
+    {
+        path: '/payment',
+        name: 'Pagamento',
+        component: PaymentView
     },
     {
         path: '/',

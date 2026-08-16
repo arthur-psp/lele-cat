@@ -55,7 +55,7 @@
             variant="flat"
             size="x-large"
             elevation="4"
-            @click="redirect"
+            to="/payment"
           ></v-btn>
         </v-col>
 
@@ -376,17 +376,17 @@
 
 <script setup>
 import { useDisplay } from "vuetify";
-import catImage from "../../assets/cat_image.png"
-import firstOptionVideo from "../../assets/firstOption.mp4"
-import products from "../../assets/todas.png"
+import catImage from "../../../assets/cat_image.png"
+import firstOptionVideo from "../../../assets/firstOption.mp4"
+import products from "../../../assets/todas.png"
 import { smellingBallController } from "../controller/smelling_ball_controller";
 import { onMounted, onBeforeUnmount, ref, nextTick } from "vue";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import lavanda from "../../assets/lavanda.png"
-import hortela from "../../assets/hortela.png"
-import talcoDeBebe from "../../assets/talco_de_bebe.png"
-import limao from "../../assets/limao.png"
+import lavanda from "../../../assets/lavanda.png"
+import hortela from "../../../assets/hortela.png"
+import talcoDeBebe from "../../../assets/talco_de_bebe.png"
+import limao from "../../../assets/limao.png"
 
 gsap.registerPlugin(ScrollTrigger);
 
