@@ -4,7 +4,6 @@ const baseUrl = import.meta.env.VITE_APP_BASE_URL;
 
 const axiosInstance = axios.create({
     baseURL: baseUrl,
-    withCredentials: true,
     headers: {
         'Content-Type': 'application/json'
     }

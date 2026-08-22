@@ -135,7 +135,7 @@
             Lavanda
           </v-chip>
                 
-          <v-img :src="lavanda" width="55%" class="product-img"></v-img>
+          <v-img :src="lavanda" width="50%"></v-img>
         
           <div class="d-flex align-baseline justify-center mb-4">
             <span class="text-h5 font-weight-medium">R$ 55,00</span>
@@ -150,6 +150,7 @@
             prepend-icon="mdi-cart-outline"
             class="font-weight-bold buy-animation"
             elevation="0"
+            @click="buy('lavanda')"
           >
             Comprar
           </v-btn>
@@ -164,7 +165,7 @@
             Hortelã
           </v-chip>
 
-          <v-img :src="hortela" width="55%" class="product-img"></v-img>
+          <v-img :src="hortela" width="50%"></v-img>
 
 
           <div class="d-flex align-baseline justify-center mb-4">
@@ -180,6 +181,7 @@
             prepend-icon="mdi-cart-outline"
             class="font-weight-bold buy-animation"
             elevation="0"
+            @click="buy('hortela')"
           >
             Comprar
           </v-btn>
@@ -201,7 +203,7 @@
             Talco de Bebê
           </v-chip>
                   
-          <v-img :src="talcoDeBebe" width="55%" class="product-img"></v-img>
+          <v-img :src="talcoDeBebe" width="50%"></v-img>
 
           <div class="d-flex align-baseline justify-center mb-4">
             <span class="text-h5 font-weight-medium">R$ 55,00</span>
@@ -216,6 +218,7 @@
             prepend-icon="mdi-cart-outline"
             class="font-weight-bold buy-animation"
             elevation="0"
+            @click="buy('talco')"
           >
             Comprar
           </v-btn>
@@ -234,7 +237,7 @@
             Limão
           </v-chip>
              
-          <v-img :src="limao" width="55%" class="product-img"></v-img>
+          <v-img :src="limao" width="50%"></v-img>
 
           <div class="d-flex align-baseline justify-center mb-4">
             <span class="text-h5 font-weight-medium">R$ 55,00</span>
@@ -249,6 +252,7 @@
             prepend-icon="mdi-cart-outline"
             class="font-weight-bold buy-animation"
             elevation="0"
+            @click="buy('limao')"
           >
             Comprar
           </v-btn>
@@ -340,22 +344,28 @@
       </v-col>
 
       <v-col id="offer-card" cols="12" md="6" class="d-flex align-center justify-center pa-md-8">
-        <div class="offer-card">
+        <v-card
+          color="logoColor"
+          rounded="xl"
+          class="pa-6 pa-md-8 w-100 mx-auto"
+          elevation="12"
+          style="max-width: 480px;"
+        >
           <div class="d-flex align-center mb-3">
             <v-chip color="bgsec" variant="flat" class="font-weight-black text-logoColor mr-3">OFERTA</v-chip>
             <span class="text-bgsec font-weight-black">-20% OFF comprando 4 un.</span>
           </div>
 
-          <h3 class="offer-card__title text-bgsec font-weight-black mb-2">Lelê Cat Desodorizante</h3>
+          <h3 class="title-font text-bgsec font-weight-black mb-2 text-h5 text-sm-h4">Lelê Cat Desodorizante</h3>
           <p class="text-bgsec mb-6">
             Elimina 100% dos odores da areia de forma instantânea e natural.
           </p>
 
-          <div class="offer-card__price text-bgsec mb-6">
-            <div class="old-price">De R$ 200,00</div>
+          <div class="text-bgsec mb-6">
+            <div class="text-h6 text-decoration-line-through opacity-50">De R$ 200,00</div>
             <div class="d-flex align-end">
-              <span class="current-price">R$ 159</span>
-              <span class="cents mb-1">,60</span>
+              <span class="title-font font-weight-black" style="font-size: clamp(52px, 6vw, 72px); line-height: 1;">R$ 159</span>
+              <span class="font-weight-black mb-1" style="font-size: 24px;">,60</span>
             </div>
           </div>
 
@@ -366,9 +376,9 @@
             rounded="xl"
             class="text-body-1 bg-bgsec font-weight-black text-logoColor"
             elevation="6"
-            @click="redirect"
+            @click="buy('kit')"
           ></v-btn>
-        </div>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -380,6 +390,7 @@ import catImage from "../../../assets/cat_image.png"
 import firstOptionVideo from "../../../assets/firstOption.mp4"
 import products from "../../../assets/todas.png"
 import { smellingBallController } from "../controller/smelling_ball_controller";
+import { useRouter } from "vue-router";
 import { onMounted, onBeforeUnmount, ref, nextTick } from "vue";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -392,6 +403,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const { mobile } = useDisplay();
 const { controller } = smellingBallController()
+const router = useRouter()
+
+const buy = (product) => {
+  router.push({ path: '/payment', query: { product } })
+}
 
 const heroSection = ref(null);
 const heroVideo = ref(null);
@@ -447,10 +463,6 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   videoScrollTrigger?.kill();
 })
-
-const redirect = () => {
-  window.open("https://shopee.com.br/product/219423316/58256794939?d_id=08cb3&uls_trackid=55g9tvvg00f2&utm_content=3V5Px4oyY62T8fz9ZFrmodRQPwRR")
-}
 </script>
 
 <style scoped>
@@ -490,40 +502,6 @@ const redirect = () => {
   z-index: 0;
 }
 
-.offer-card {
-  background: rgb(var(--v-theme-logoColor));
-  border-radius: 32px;
-  padding: 40px;
-  max-width: 480px;
-  width: 100%;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
-  z-index: 1;
-}
-
-.offer-card__title {
-  font-family: 'Playfair Display', serif !important;
-  font-size: clamp(24px, 3vw, 36px);
-  line-height: 1.2;
-}
-
-.old-price {
-  font-size: 20px;
-  text-decoration: line-through;
-  opacity: 0.55;
-}
-
-.current-price {
-  font-family: 'Playfair Display', serif !important;
-  font-size: clamp(52px, 6vw, 72px);
-  font-weight: 900;
-  line-height: 1;
-}
-
-.cents {
-  font-size: 24px;
-  font-weight: 900;
-}
-
 @media (min-width: 960px) {
   /* Imagem sobrepõe levemente o card de oferta */
   .product-image-wrap {
@@ -534,11 +512,6 @@ const redirect = () => {
 @media (max-width: 959px) {
   .products-section {
     padding: 24px 8px;
-  }
-
-  .offer-card {
-    padding: 28px 20px;
-    border-radius: 24px;
   }
 }
 
@@ -630,7 +603,4 @@ const redirect = () => {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-.product-img {
-  max-width: 50% !important;
-}
 </style>

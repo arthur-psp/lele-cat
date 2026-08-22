@@ -1,17 +1,17 @@
 class PaymentPix {
     constructor(
-        amount,
-        expiresIn
+        quantity,
+        is_kit
     ) {
-        this.amount = amount,
-        this.expiresIn = expiresIn
+        this.quantity = quantity,
+        this.is_kit = is_kit
     }
 }
 
 export const paymentPixDefault = () => {
     const paymentPix = {
-        amount: "",
-        expiresIn: 3600
+        quantity: 0,
+        is_kit: false
     }
     return paymentPix
 }
