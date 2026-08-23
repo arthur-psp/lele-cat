@@ -131,7 +131,7 @@
               variant="flat"
               class="font-weight-black text-none cta-button"
               elevation="8"
-              @click="controller.generatePixQrCode"
+              @click="controller.handlePaymentDialog(activeItem, qty)"
             ></v-btn>
 
             <div class="d-flex justify-center flex-wrap ga-4 mt-4">
@@ -148,12 +148,14 @@
         </section>
       </v-col>
     </v-row>
+    <PaymentDialog />
   </div>
 </template>
 
 <script setup>
 import { computed, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
+import PaymentDialog from "./payment_dialog.vue";
 
 import DepthCarousel from "../../../components/depth_carousel.vue";
 import lavanda from "../../../assets/lavanda.png";
@@ -162,7 +164,7 @@ import talcoDeBebe from "../../../assets/talco_de_bebe.png";
 import limao from "../../../assets/limao.png";
 import todas from "../../../assets/todas.png";
 
-import { paymentController } from "../controller/payment_controller";
+import { paymentController } from "../controller/payment_controller.js";
 
 const { controller } = paymentController()
 
@@ -178,8 +180,8 @@ const PRODUCTS = [
     alt: "Desodorizante Lelê Cat Lavanda",
     label: "Lavanda",
     price: 55,
-    unitLabel: "/ un",
     chip: "#7b1c8a",
+    isKit: false,
     description: "Aroma floral e relaxante, perfeito para criar um ambiente acolhedor.",
   },
   {
@@ -189,8 +191,8 @@ const PRODUCTS = [
     alt: "Desodorizante Lelê Cat Hortelã",
     label: "Hortelã",
     price: 55,
-    unitLabel: "/ un",
     chip: "#0f4d1e",
+    isKit: false,
     description: "Frescor revigorante que purifica o ar da sua casa.",
   },
   {
@@ -200,8 +202,8 @@ const PRODUCTS = [
     alt: "Desodorizante Lelê Cat Talco de Bebê",
     label: "Talco de Bebê",
     price: 55,
-    unitLabel: "/ un",
     chip: "#3970b3",
+    isKit: false,
     description: "Suavidade clássica e aconchegante, como um abraço.",
   },
   {
@@ -211,8 +213,8 @@ const PRODUCTS = [
     alt: "Desodorizante Lelê Cat Limão",
     label: "Limão",
     price: 55,
-    unitLabel: "/ un",
     chip: "#fadf69",
+    isKit: false,
     description: "Cítrico e vibrante, elimina os odores com energia.",
   },
   {
@@ -223,7 +225,6 @@ const PRODUCTS = [
     label: "Kit Completo",
     price: 159.6,
     oldPrice: 200,
-    unitLabel: "/ kit",
     chip: "#f8bc68",
     isKit: true,
     description: "As 4 fragrâncias da linha completa com 20% de desconto.",
