@@ -337,18 +337,92 @@
 
         <template v-slot:item.3>
             <v-card flat class="pa-4">
-                <h2 class="text-h6 font-weight-bold mb-6">
-                    <v-icon icon="mdi-clipboard-check-outline" size="22" class="mr-1"></v-icon>
-                    Realize o pagamento
-                </h2>
+                <div class="text-center mb-2">
+                    <v-icon icon="mdi-qrcode" size="48" color="logoColor" class="mb-3"></v-icon>
+                    <h2 class="text-h5 font-weight-bold mb-1">Escaneie o QR Code</h2>
+                    <p class="text-body-2 text-medium-emphasis">Pague com o banco da sua preferência</p>
+                </div>
 
-                <v-img
-                    :src="controller.qrCodeGenerated.value.brCodeBase64"
-                    width="220"
-                    height="220"
-                    max-width="220"
-                    class="bg-white rounded-lg elevation-2 pa-2"
-                ></v-img>
+                <!-- Timer -->
+                <div class="text-center mb-4">
+                    <v-chip
+                        v-if="controller.timeRemaining.value && !controller.timeRemaining.value.expired"
+                        color="warning"
+                        variant="tonal"
+                        size="small"
+                        prepend-icon="mdi-clock-outline"
+                    >
+                        Expira em {{ controller.timeRemaining.value.text }}
+                    </v-chip>
+                    <v-chip
+                        v-else-if="controller.timeRemaining.value?.expired"
+                        color="error"
+                        variant="tonal"
+                        size="small"
+                        prepend-icon="mdi-clock-alert-outline"
+                    >
+                        QR Code expirado
+                    </v-chip>
+                </div>
+
+                <!-- QR Code Card -->
+                <div class="d-flex justify-center mb-4">
+                    <v-card
+                        class="qr-card pa-4 d-flex align-center justify-center"
+                        rounded="xl"
+                        elevation="4"
+                    >
+                        <v-img
+                            :src="controller.qrCodeGenerated.value.brCodeBase64"
+                            width="200"
+                            height="200"
+                            max-width="200"
+                            class="rounded-lg"
+                        ></v-img>
+                    </v-card>
+                </div>
+
+                <!-- Copy Button -->
+                <div class="d-flex justify-center mb-4">
+                    <v-btn
+                        :color="controller.copySuccess.value ? 'success' : 'logoColor'"
+                        :variant="controller.copySuccess.value ? 'flat' : 'outlined'"
+                        rounded="lg"
+                        class="font-weight-bold text-none"
+                        prepend-icon="mdi-content-copy"
+                        @click="controller.copyPixCode"
+                    >
+                        {{ controller.copySuccess.value ? 'Copiado!' : 'Copiar código PIX' }}
+                    </v-btn>
+                </div>
+
+                <!-- Instructions -->
+                <v-card variant="tonal" rounded="lg" class="pa-4">
+                    <div class="d-flex align-center mb-3">
+                        <v-icon icon="mdi-information-outline" size="20" class="mr-2"></v-icon>
+                        <span class="text-subtitle-2 font-weight-bold">Como pagar</span>
+                    </div>
+                    <v-list density="compact" class="bg-transparent pa-0">
+                        <v-list-item class="pa-0" min-height="32">
+                            <template v-slot:prepend>
+                                <v-icon icon="mdi-1" size="18" color="logoColor"></v-icon>
+                            </template>
+                            <v-list-item-title class="text-body-2">Abra o app do seu banco</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item class="pa-0" min-height="32">
+                            <template v-slot:prepend>
+                                <v-icon icon="mdi-2" size="18" color="logoColor"></v-icon>
+                            </template>
+                            <v-list-item-title class="text-body-2">Escolha a opção <strong>Pix</strong> e escaneie o QR Code</v-list-item-title>
+                        </v-list-item>
+                        <v-list-item class="pa-0" min-height="32">
+                            <template v-slot:prepend>
+                                <v-icon icon="mdi-3" size="18" color="logoColor"></v-icon>
+                            </template>
+                            <v-list-item-title class="text-body-2">Confirme o pagamento de <strong>{{ controller.formatBRL(controller.selectedProduct.value?.price * controller.selectedQty.value) }}</strong></v-list-item-title>
+                        </v-list-item>
+                    </v-list>
+                </v-card>
             </v-card>
         </template>
 
@@ -407,6 +481,7 @@
                     rounded="lg"
                     class="font-weight-bold text-none"
                     size="large"
+                    @click="controller.handleClosePaymentDialog"
                 ></v-btn>
             </div>
         </template>
@@ -425,5 +500,11 @@ const { controller } = paymentController()
 .bg-liquid{
   background-color: rgba(0, 0, 0, 0.1) !important;
   backdrop-filter: blur(15px) !important;
+}
+.qr-card {
+  background: white;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  width: 240px;
+  height: 240px;
 }
 </style>

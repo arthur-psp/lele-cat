@@ -10,7 +10,7 @@
 
     <template v-slot:prepend>
       <div style="width: 210px; height: 230px; flex: none; display: flex; justify-content: center;">
-        <v-img :src="vetor" width="100%" height="100%" contain class="cursor-pointer"></v-img>
+        <v-img :src="vetor" width="100%" height="100%" contain class="cursor-pointer" @click="redirectToHome"></v-img>
       </div>
     </template>
 
@@ -47,12 +47,23 @@
                 rounded="lg"
                 class="mt-1"
               ></v-list-item>
+              <v-list-item 
+                prepend-icon="mdi-box" 
+                title="Meus Produtos" 
+                base-color="success"
+                target="_blank"
+                rounded="lg"
+                class="mt-1"
+                @click="controller.handleStatusPaymentOpen(true)"
+              ></v-list-item>
             </v-list>
           </v-menu>
         </v-btn>
       </div>
     </template>
   </v-app-bar>
+
+  <StatusPayment />
 </template>
 
 <script setup>
@@ -61,10 +72,15 @@ import logoDark from "../assets/logo/logo_dark-removebg-preview.png"
 import fiveicon from "../assets/logo/fiveicon.png"
 import logo from "../assets/logo/logo.png"
 import vetor from "../assets/logo/vetor.png"
+import StatusPayment from "../module/payment/view/status_payment.vue"
+import { paymentController } from "../module/payment/controller/payment_controller"
+import { useRouter } from "vue-router"
 
 import { useTheme } from "vuetify";
 import { onMounted, ref } from "vue";
 import { useDisplay } from "vuetify";
+const { controller } = paymentController()
+const router = useRouter()
 
 const theme = useTheme()
 const currentTheme = ref("system");
@@ -92,6 +108,10 @@ const handleChangeThemeMode = async (mode) => {
   currentTheme.value = mode;
   applyTheme(mode);
 };
+
+const redirectToHome = () => {
+  router.push({ path: '/' })
+}
 
 onMounted(() => {
   applyTheme(currentTheme.value)
