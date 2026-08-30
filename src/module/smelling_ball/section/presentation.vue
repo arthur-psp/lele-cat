@@ -55,7 +55,7 @@
             variant="flat"
             size="x-large"
             elevation="4"
-            to="/payment"
+            to="/choose-products"
           ></v-btn>
         </v-col>
 
@@ -406,7 +406,7 @@ const { controller } = smellingBallController()
 const router = useRouter()
 
 const buy = (product) => {
-  router.push({ path: '/payment', query: { product } })
+  router.push({ path: '/choose-products', query: { product } })
 }
 
 const heroSection = ref(null);

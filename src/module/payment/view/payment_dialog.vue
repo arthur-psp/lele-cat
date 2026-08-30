@@ -276,7 +276,13 @@
                     </div>
                 </v-card>
 
-                <v-card variant="tonal" rounded="lg" class="pa-4 mb-4">
+                <div
+                  v-if="controller.loadingQrCode.value"
+                  class="d-flex align-center justify-center my-2"
+                >
+                    <v-progress-circular color="primary" indeterminate></v-progress-circular>
+                </div>
+                <v-card v-else variant="tonal" rounded="lg" class="pa-4 mb-4">
                     <div class="d-flex align-center mb-3">
                         <v-icon icon="mdi-cash" size="20" class="mr-2"></v-icon>
                         <span class="text-subtitle-2 font-weight-bold">Forma de Pagamento</span>
@@ -294,6 +300,7 @@
                                 </div>
                                 <v-radio
                                   class="d-flex justify-end"
+                                  color="primary"
                                   readonly
                                   v-model="controller.isPix.value"
                                 ></v-radio>

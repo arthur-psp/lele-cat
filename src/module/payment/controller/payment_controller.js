@@ -2,10 +2,12 @@ import { inject, ref, computed, onBeforeUnmount } from "vue";
 import { paymentKeys } from "../keys/payment_keys";
 import { paymentPixDefault } from "../domain/payment/payment_pix";
 import { QrcodeSvg } from "qrcode.vue";
+import { useRouter } from "vue-router";
 
 const form = ref(paymentPixDefault())
 const formRef = ref(null)
 const loading = ref(false)
+const loadingQrCode = ref(false)
 const paymentDialog = ref(false)
 const selectedProduct = ref(null)
 const selectedQty = ref(1)
@@ -16,13 +18,13 @@ const now = ref(Date.now())
 let timerInterval = null
 const copySuccess = ref(false)
 const paymentState = ref({})
-const statusPaymentDialog = ref(false)
 
 function paymentController() {
     const createPaymentPixUseCaseImpl = inject(paymentKeys.createPaymentPixUseCaseImpl)
     const getPaymentStatusByIdUseCaseImpl = inject(paymentKeys.getPaymentStatusByIdUseCaseImpl)
     const createSimulatePaymentPixUseCaseImpl = inject(paymentKeys.createSimulatePaymentPixUseCaseImpl)
 
+    const router = useRouter()
     const formatPhone = (input) => {
         let numbers = input.replace(/\D/g, '')
         if (numbers.length > 11) numbers = numbers.slice(0, 11)
@@ -105,7 +107,7 @@ function paymentController() {
 
     const generatePixQrCode = async () => {
         try{
-            loading.value = true
+            loadingQrCode.value = true
             const payload = {
                 quantity: form.value.quantity,
                 isKit: form.value.is_kit
@@ -113,12 +115,27 @@ function paymentController() {
             qrCodeGenerated.value = await createPaymentPixUseCaseImpl(payload)
 
             startTimer()
+            
+            if(qrCodeGenerated.value.status === 'PENDING') {
+                saveProduct(qrCodeGenerated.value)
+            }
+
             nextStep()
         } catch (err) {
             console.log(err);
         } finally {
-            loading.value = false
+            loadingQrCode.value = false
         }
+    }
+
+    const saveProduct = (item) => {
+        const payload = {
+            id: item.id,
+            chip: selectedProduct.value?.chip,
+            name: selectedProduct.value?.name,
+            image: selectedProduct.value?.image
+        }
+        localStorage.setItem("product_status", JSON.stringify(payload))
     }
 
     const checkPayment = async () => {
@@ -215,8 +232,8 @@ function paymentController() {
         try {
             const { valid } = await formRef.value.validate()
             if (valid) {
-                console.log(form.value);
-                
+                //console.log(form.value);
+                //await reqToApi
                 nextStep()
             }
         } catch (err) {
@@ -230,13 +247,12 @@ function paymentController() {
         form.value = {...paymentPixDefault}
         qrCodeGenerated.value = {}
         copySuccess.value = false
-        currentStep.value = 1
-    }
 
-    const handleStatusPaymentOpen = async (value) => {
-        console.log('clicked');
-        
-        statusPaymentDialog.value = value
+        if(currentStep.value === 3) {
+            router.push({ path: '/' })
+        }
+
+        currentStep.value = 1
     }
 
 
@@ -255,7 +271,7 @@ function paymentController() {
             timeRemaining,
             copySuccess,
             paymentState,
-            statusPaymentDialog,
+            loadingQrCode,
 
             copyPixCode,
             formatPhone,
@@ -272,7 +288,6 @@ function paymentController() {
             submitStep1,
             handleClosePaymentDialog,
             checkPayment,
-            handleStatusPaymentOpen
         }
     }
 }

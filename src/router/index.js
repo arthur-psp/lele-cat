@@ -17,7 +17,7 @@ const routes = [
         // ],
     },
     {
-        path: '/payment',
+        path: '/choose-products',
         name: 'Pagamento',
         component: ChooseProduct
     },
