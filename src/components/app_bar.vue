@@ -234,8 +234,6 @@ const checkPayment = async () => {
     if(!productBought.value.id) return    
     
     statusPayment.value = await getPaymentStatusByIdUseCaseImpl(productBought.value.id)
-    console.log(statusPayment.value);
-    
   } catch (err) {
       console.log('Erro ao consultar estado do pagamento: ', err);
       statusPayment.value = {}

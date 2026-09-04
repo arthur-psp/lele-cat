@@ -12,182 +12,11 @@
       >
 
         <template v-slot:item.1>
-            <v-card title="Identificação" flat class="pa-4">
-                <v-form validate-on="submit lazy" :ref="controller.formRef">
-                    <v-row>
-                        <v-col cols="12">
-                            <v-text-field
-                                v-model="controller.form.value.name"
-                                :counter="50"
-                                maxlength="50"
-                                :rules="controller.helper.requiredRules"
-                                label="Nome completo"
-                                required
-                                density="comfortable"
-                                color="primary"
-                                clearable
-                                rounded="lg"
-                                prepend-inner-icon="mdi-account-outline"
-                                @input="controller.form.value.name = controller.formatTitle($event.target.value)"
-                            ></v-text-field>
-                        </v-col>
-                    </v-row>
-
-                    <v-row>
-                        <v-col cols="12" md="6">
-                            <v-text-field
-                                v-model="controller.form.value.cpf"
-                                :counter="14"
-                                maxlength="14"
-                                :rules="controller.helper.cpfRules"
-                                label="CPF"
-                                required
-                                density="comfortable"
-                                color="primary"
-                                clearable
-                                rounded="lg"
-                                placeholder="000.000.000-00"
-                                prepend-inner-icon="mdi-card-account-details-outline"
-                                @input="controller.form.value.cpf = controller.formatCpfCnpj($event.target.value)"
-                            ></v-text-field>
-                        </v-col>
-
-                        <v-col cols="12" md="6">
-                            <v-text-field
-                                v-model="controller.form.value.phone"
-                                :counter="15"
-                                maxlength="15"
-                                :rules="controller.helper.phoneRules"
-                                label="Telefone"
-                                required
-                                density="comfortable"
-                                color="primary"
-                                clearable
-                                rounded="lg"
-                                placeholder="(00) 00000-0000"
-                                prepend-inner-icon="mdi-phone-outline"
-                                @input="controller.form.value.phone = controller.formatPhone($event.target.value)"
-                            ></v-text-field>
-                        </v-col>
-                    </v-row>
-
-                    <v-divider class="my-4"></v-divider>
-
-                    <h3 class="text-subtitle-1 font-weight-bold mb-4">
-                        <v-icon icon="mdi-map-marker-outline" size="18" class="mr-1"></v-icon>
-                        Endereço de entrega
-                    </h3>
-
-                    <v-row>
-                        <v-col cols="12" md="4">
-                            <v-text-field
-                                v-model="controller.form.value.cep"
-                                :counter="9"
-                                maxlength="9"
-                                :rules="controller.helper.cepRules"
-                                label="CEP"
-                                required
-                                density="comfortable"
-                                color="primary"
-                                clearable
-                                rounded="lg"
-                                placeholder="00000-000"
-                                prepend-inner-icon="mdi-map-marker-radius"
-                                @input="controller.form.value.cep = controller.formatCep($event.target.value)"
-                            ></v-text-field>
-                        </v-col>
-
-                        <v-col cols="12" md="8">
-                            <v-text-field
-                                v-model="controller.form.value.city"
-                                :counter="50"
-                                maxlength="50"
-                                :rules="controller.helper.requiredRules"
-                                label="Cidade"
-                                required
-                                density="comfortable"
-                                color="primary"
-                                clearable
-                                rounded="lg"
-                                @input="controller.form.value.city = controller.formatTitle($event.target.value)"
-                            ></v-text-field>
-                        </v-col>
-                    </v-row>
-
-                    <v-row>
-                        <v-col cols="12" md="8">
-                            <v-text-field
-                                v-model="controller.form.value.street"
-                                :counter="80"
-                                maxlength="80"
-                                :rules="controller.helper.requiredRules"
-                                label="Rua"
-                                required
-                                density="comfortable"
-                                color="primary"
-                                clearable
-                                rounded="lg"
-                                @input="controller.form.value.street = controller.formatTitle($event.target.value)"
-                            ></v-text-field>
-                        </v-col>
-
-                        <v-col cols="12" md="2">
-                            <v-text-field
-                                v-model="controller.form.value.number"
-                                :counter="10"
-                                maxlength="10"
-                                :rules="controller.helper.requiredRules"
-                                label="Nº"
-                                required
-                                density="comfortable"
-                                color="primary"
-                                clearable
-                                rounded="lg"
-                            ></v-text-field>
-                        </v-col>
-
-                        <v-col cols="12" md="2">
-                            <v-text-field
-                                v-model="controller.form.value.neighborhood"
-                                :counter="50"
-                                maxlength="50"
-                                :rules="controller.helper.requiredRules"
-                                label="Bairro"
-                                required
-                                density="comfortable"
-                                color="primary"
-                                clearable
-                                rounded="lg"
-                                @input="controller.form.value.neighborhood = controller.formatTitle($event.target.value)"
-                            ></v-text-field>
-                        </v-col>
-                    </v-row>
-
-                    <v-row>
-                        <v-col cols="12">
-                            <v-textarea
-                                v-model="controller.form.value.description"
-                                :counter="200"
-                                maxlength="200"
-                                label="Complemento / Descrição (opcional)"
-                                density="comfortable"
-                                color="primary"
-                                clearable
-                                rounded="lg"
-                                rows="2"
-                                auto-grow
-                                @input="controller.form.value.description = controller.formatTitle($event.target.value)"
-                            ></v-textarea>
-                        </v-col>
-                    </v-row>
-
-                    <v-row class="mt-2">
-                        <v-col cols="12" class="d-flex justify-end">
-                            
-                        </v-col>
-                    </v-row>
-                </v-form>
-            </v-card>
+            <OrderForm
+                ref="orderFormRef"
+                :products="orderProducts"
+                @submitted="onOrderSubmitted"
+            />
         </template>
 
         <template v-slot:item.2>
@@ -206,15 +35,21 @@
                     <v-row dense>
                         <v-col cols="12" md="6">
                             <div class="text-caption text-medium-emphasis">Nome</div>
-                            <div class="text-body-1">{{ controller.form.value.name }}</div>
+                            <div class="text-body-1">{{ orderCtrl.form.value.name }}</div>
                         </v-col>
-                        <v-col cols="12" md="3">
+                        <v-col cols="12" md="6">
+                            <div class="text-caption text-medium-emphasis">E-mail</div>
+                            <div class="text-body-1">{{ orderCtrl.form.value.email }}</div>
+                        </v-col>
+                    </v-row>
+                    <v-row dense class="mt-1">
+                        <v-col cols="12" md="6">
                             <div class="text-caption text-medium-emphasis">CPF</div>
-                            <div class="text-body-1">{{ controller.form.value.cpf }}</div>
+                            <div class="text-body-1">{{ orderCtrl.form.value.cpf }}</div>
                         </v-col>
-                        <v-col cols="12" md="3">
+                        <v-col cols="12" md="6">
                             <div class="text-caption text-medium-emphasis">Telefone</div>
-                            <div class="text-body-1">{{ controller.form.value.phone }}</div>
+                            <div class="text-body-1">{{ orderCtrl.form.value.phone }}</div>
                         </v-col>
                     </v-row>
                 </v-card>
@@ -228,29 +63,29 @@
                     <v-row dense>
                         <v-col cols="12" md="3">
                             <div class="text-caption text-medium-emphasis">CEP</div>
-                            <div class="text-body-1">{{ controller.form.value.cep }}</div>
+                            <div class="text-body-1">{{ orderCtrl.form.value.cep }}</div>
                         </v-col>
                         <v-col cols="12" md="5">
                             <div class="text-caption text-medium-emphasis">Cidade</div>
-                            <div class="text-body-1">{{ controller.form.value.city }}</div>
+                            <div class="text-body-1">{{ orderCtrl.form.value.city }}</div>
                         </v-col>
                         <v-col cols="12" md="4">
                             <div class="text-caption text-medium-emphasis">Bairro</div>
-                            <div class="text-body-1">{{ controller.form.value.neighborhood }}</div>
+                            <div class="text-body-1">{{ orderCtrl.form.value.neighborhood }}</div>
                         </v-col>
                     </v-row>
                     <v-row dense class="mt-1">
                         <v-col cols="12" md="8">
                             <div class="text-caption text-medium-emphasis">Rua</div>
-                            <div class="text-body-1">{{ controller.form.value.street }}</div>
+                            <div class="text-body-1">{{ orderCtrl.form.value.street }}</div>
                         </v-col>
                         <v-col cols="12" md="2">
                             <div class="text-caption text-medium-emphasis">Nº</div>
-                            <div class="text-body-1">{{ controller.form.value.number }}</div>
+                            <div class="text-body-1">{{ orderCtrl.form.value.number }}</div>
                         </v-col>
                         <v-col cols="12" md="2">
                             <div class="text-caption text-medium-emphasis">Complemento</div>
-                            <div class="text-body-1">{{ controller.form.value.description || '—' }}</div>
+                            <div class="text-body-1">{{ orderCtrl.form.value.description || '—' }}</div>
                         </v-col>
                     </v-row>
                 </v-card>
@@ -442,7 +277,7 @@
                     rounded="lg"
                     class="font-weight-bold text-none"
                     size="large"
-                    @click="controller.handleClosePaymentDialog"
+                    @click="handleClose"
                 ></v-btn>
 
                 <v-btn
@@ -466,7 +301,7 @@
                     rounded="lg"
                     class="font-weight-bold text-none"
                     size="large"
-                    @click="controller.submitStep1"
+                    @click="handleNext"
                 ></v-btn>
 
                 <v-btn
@@ -488,7 +323,7 @@
                     rounded="lg"
                     class="font-weight-bold text-none"
                     size="large"
-                    @click="controller.handleClosePaymentDialog"
+                    @click="handleClose"
                 ></v-btn>
             </div>
         </template>
@@ -498,9 +333,33 @@
 </template>
 
 <script setup>
+import { computed, ref } from "vue";
 import { paymentController } from '../controller/payment_controller';
+import { orderController } from '../../order/controller/order_controller';
+import OrderForm from '../../order/view/order_form.vue';
 
 const { controller } = paymentController()
+const { controller: orderCtrl } = orderController()
+
+const orderFormRef = ref(null)
+
+const orderProducts = computed(() => {
+    const name = controller.selectedProduct.value?.name
+    return name ? [name] : []
+})
+
+const onOrderSubmitted = () => {
+    controller.nextStep()
+}
+
+const handleNext = async () => {
+    await orderFormRef.value?.submit()
+}
+
+const handleClose = () => {
+    orderFormRef.value?.reset()
+    controller.handleClosePaymentDialog()
+}
 </script>
 
 <style>
